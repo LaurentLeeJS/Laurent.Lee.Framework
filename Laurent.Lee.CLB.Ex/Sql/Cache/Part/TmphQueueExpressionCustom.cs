@@ -1,8 +1,29 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading;
-using Laurent.Lee.CLB.Code.CSharp;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Part
 {
@@ -26,6 +47,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
         /// 自定义缓存获取器
         /// </summary>
         private Func<TKeyType, IEnumerable<TValueType>, TCacheValueType> getValue;
+
         /// <summary>
         /// 获取缓存数据
         /// </summary>
@@ -50,6 +72,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
                 finally { Monitor.Exit(counter.SqlTool.Lock); }
             }
         }
+
         /// <summary>
         /// 先进先出优先队列自定义缓存
         /// </summary>
@@ -64,12 +87,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             if (getValue == null) TmphLog.Error.Throw(TmphLog.TmphExceptionType.Null);
             this.getValue = getValue;
 
-
             counter.OnReset += reset;
             counter.SqlTool.OnInsertedLock += onInserted;
             counter.OnUpdated += onUpdated;
             counter.OnDeleted += onDeleted;
         }
+
         /// <summary>
         /// 增加数据
         /// </summary>
@@ -80,6 +103,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             TCacheValueType values = queueCache.Get(key, null);
             if (values != null && !values.Add(value = counter.Add(value))) counter.Remove(value);
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -132,6 +156,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
                 }
             }
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>

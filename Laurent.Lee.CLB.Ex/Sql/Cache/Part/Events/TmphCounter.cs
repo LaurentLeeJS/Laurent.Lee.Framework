@@ -1,7 +1,27 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
-using System.Threading;
-using Laurent.Lee.CLB.Code.CSharp;
 using System.Linq.Expressions;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
@@ -21,10 +41,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
         /// 缓存关键字获取器
         /// </summary>
         public Func<TModelType, TKeyType> GetKey { get; private set; }
+
         /// <summary>
         /// 缓存数据
         /// </summary>
         private Dictionary<TKeyType, TmphKeyValue<TValueType, int>> values;
+
         /// <summary>
         /// 缓存数据数量
         /// </summary>
@@ -32,6 +54,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
         {
             get { return values.Count; }
         }
+
         /// <summary>
         /// 获取缓存值
         /// </summary>
@@ -44,6 +67,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
                 return Get(key);
             }
         }
+
         /// <summary>
         /// 缓存计数
         /// </summary>
@@ -55,6 +79,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
         {
             sqlTool.SetSelectMember(getKey);
         }
+
         /// <summary>
         /// 缓存计数
         /// </summary>
@@ -71,6 +96,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
             sqlTool.OnUpdatedLock += onUpdated;
             sqlTool.OnDeletedLock += onDeleted;
         }
+
         /// <summary>
         /// 重置缓存
         /// </summary>
@@ -78,10 +104,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
         {
             values.Clear();
         }
+
         /// <summary>
         /// 更新记录事件
         /// </summary>
         public event Action<TValueType, TValueType, TValueType> OnUpdated;
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -95,10 +123,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
             if (values.TryGetValue(key, out TCacheValue)) update(TCacheValue.Key, value, memberMap);
             if (OnUpdated != null) OnUpdated(TCacheValue.Key, value, oldValue);
         }
+
         /// <summary>
         /// 删除记录事件
         /// </summary>
         public event Action<TValueType> OnDeleted;
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -113,6 +143,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
                 if (OnDeleted != null) OnDeleted(TCacheValue.Key);
             }
         }
+
         /// <summary>
         /// 获取缓存数据
         /// </summary>
@@ -123,6 +154,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
             TmphKeyValue<TValueType, int> valueCount;
             return values.TryGetValue(key, out valueCount) ? valueCount.Key : null;
         }
+
         /// <summary>
         /// 获取缓存数据
         /// </summary>
@@ -133,6 +165,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
             TmphKeyValue<TValueType, int> valueCount;
             return values.TryGetValue(GetKey(value), out valueCount) ? valueCount.Key : null;
         }
+
         /// <summary>
         /// 添加缓存数据
         /// </summary>
@@ -153,6 +186,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part.Events
             values.Add(key, new TmphKeyValue<TValueType, int>(copyValue, 0));
             return copyValue;
         }
+
         /// <summary>
         /// 删除缓存数据
         /// </summary>

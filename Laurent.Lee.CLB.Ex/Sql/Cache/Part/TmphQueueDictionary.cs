@@ -1,8 +1,29 @@
-﻿using System;
-using Laurent.Lee.CLB.Code.CSharp;
-using System.Threading;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Part
 {
@@ -25,6 +46,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
         /// 缓存字典关键字获取器
         /// </summary>
         private Func<TValueType, dictionaryKeyType> getDictionaryKey;
+
         /// <summary>
         /// 先进先出优先队列 字典缓存
         /// </summary>
@@ -58,6 +80,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             Dictionary<dictionaryKeyType, TValueType> values = queueCache.Get(key, null);
             if (values != null) values.Add(getDictionaryKey(value), counter.Add(value));
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -115,6 +138,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
                 }
             }
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -127,6 +151,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
                 TmphLog.Error.Add(typeof(TValueType).FullName + " 缓存同步错误", false, true);
             }
         }
+
         /// <summary>
         /// 判断是否存在关键字匹配的缓存
         /// </summary>
@@ -146,6 +171,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             finally { Monitor.Exit(counter.SqlTool.Lock); }
             return false;
         }
+
         /// <summary>
         /// 获取字典缓存
         /// </summary>
@@ -165,6 +191,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             }
             return values;
         }
+
         /// <summary>
         /// 获取匹配数据
         /// </summary>
@@ -187,6 +214,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             finally { Monitor.Exit(counter.SqlTool.Lock); }
             return nullValue;
         }
+
         /// <summary>
         /// 判断关键字是否存在
         /// </summary>
@@ -203,6 +231,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             }
             finally { Monitor.Exit(counter.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 获取缓存数据数量
         /// </summary>
@@ -219,6 +248,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             finally { Monitor.Exit(counter.SqlTool.Lock); }
             return 0;
         }
+
         /// <summary>
         /// 获取缓存数组
         /// </summary>
@@ -234,6 +264,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             }
             finally { Monitor.Exit(counter.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 获取缓存关键字数组
         /// </summary>
@@ -249,6 +280,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             }
             finally { Monitor.Exit(counter.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 获取匹配缓存数据集合
         /// </summary>
@@ -266,6 +298,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Part
             finally { Monitor.Exit(counter.SqlTool.Lock); }
             return default(TmphSubArray<TValueType>);
         }
+
         /// <summary>
         /// 获取一个匹配数据
         /// </summary>

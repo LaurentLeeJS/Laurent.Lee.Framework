@@ -1,24 +1,48 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
+using System.Collections.Generic;
 
 namespace Laurent.Lee.CLB.Algorithm
 {
     /// <summary>
-    ///     并查集聚类
+    /// 并查集聚类
     /// </summary>
     public static class TmphGroup
     {
         /// <summary>
-        ///     数据分组
+        /// 数据组合
         /// </summary>
         /// <typeparam name="TValueType">数据类型</typeparam>
-        /// <param name="values">数据组合集合</param>
+        /// <param name="values">数据</param>
         /// <returns>数据分组集合</returns>
         public static unsafe TmphGroupResult<TValueType> Groups<TValueType>(TmphData<TValueType>[] values)
             where TValueType : IEquatable<TValueType>
         {
-            if (values.length() == 0) return default(TmphGroupResult<TValueType>);
-            var bufferLength = values.Length * 8 + 3;
-            var buffer = TmphMemoryPool.StreamBuffers.Get(bufferLength * sizeof(int));
+            if (values.length() == 0)
+                return default(TmphGroupResult<TValueType>);
+            int bufferLength = values.Length * 8 + 3;
+            byte[] buffer = TmphMemoryPool.StreamBuffers.Get(bufferLength * sizeof(int));
             try
             {
                 fixed (byte* bufferFixed = buffer)
@@ -26,7 +50,7 @@ namespace Laurent.Lee.CLB.Algorithm
                     #region 数字化
 
                     int* indexFixed = (int*)bufferFixed, numberFixed = (int*)bufferFixed;
-                    var numberHash = TmphDictionary<TValueType>.Create<int>(values.Length);
+                    Dictionary<TValueType, int> numberHash = TmphDictionary<TValueType>.Create<int>(values.Length);
                     int indexCount = 0, sum;
                     foreach (var value in values)
                     {
@@ -43,9 +67,9 @@ namespace Laurent.Lee.CLB.Algorithm
 
                     #region 数量统计
 
-                    var countFixed = numberFixed + (values.Length << 1);
+                    int* countFixed = numberFixed + (values.Length << 1);
                     Array.Clear(buffer, (int)((byte*)countFixed - bufferFixed), indexCount * sizeof(int));
-                    for (var start = indexFixed; start != numberFixed; ++countFixed[*start++])
+                    for (int* start = indexFixed; start != numberFixed; ++countFixed[*start++])
                     {
                     }
 
@@ -53,13 +77,13 @@ namespace Laurent.Lee.CLB.Algorithm
 
                     #region 桶排序建图
 
-                    var groupFixed = countFixed + indexCount;
+                    int* groupFixed = countFixed + indexCount;
                     sum = *countFixed;
-                    for (var start = countFixed; ++start != groupFixed; *start = (sum += *start))
+                    for (int* start = countFixed; ++start != groupFixed; *start = (sum += *start))
                     {
                     }
                     *groupFixed++ = sum;
-                    for (var start = indexFixed; start != numberFixed; ++start)
+                    for (int* start = indexFixed; start != numberFixed; ++start)
                     {
                         int index1 = *start, index2 = *++start;
                         numberFixed[--countFixed[index1]] = index2;
@@ -104,18 +128,16 @@ namespace Laurent.Lee.CLB.Algorithm
                     #region 反数字化
 
                     Array.Clear(buffer, (int)((byte*)(countFixed--) - bufferFixed), (groupCount - 1) * sizeof(int));
-                    for (var start = indexFixed; start != numberFixed; start += 2)
+                    for (int* start = indexFixed; start != numberFixed; start += 2)
                         ++countFixed[*start = groupFixed[*start]];
-                    var result = new TmphGroupResult<TValueType>
+                    TmphGroupResult<TValueType> result = new TmphGroupResult<TValueType>
                     {
                         Values = new TmphData<TValueType>[values.Length],
                         Indexs = new int[groupCount]
                     };
                     fixed (int* resultFixed = result.Indexs)
                     {
-                        for (sum = 0, groupFixed = countFixed + groupCount, groupEnd = resultFixed;
-                            ++countFixed != groupFixed;
-                            *groupEnd++ = (sum += *countFixed))
+                        for (sum = 0, groupFixed = countFixed + groupCount, groupEnd = resultFixed; ++countFixed != groupFixed; *groupEnd++ = (sum += *countFixed))
                         {
                         }
                         groupFixed = indexFixed;
@@ -139,7 +161,7 @@ namespace Laurent.Lee.CLB.Algorithm
         }
 
         /// <summary>
-        ///     数据分组
+        /// 数据分组
         /// </summary>
         /// <typeparam name="TValueType">数据类型</typeparam>
         /// <param name="values">数据组合集合</param>
@@ -260,57 +282,57 @@ namespace Laurent.Lee.CLB.Algorithm
         }
 
         /// <summary>
-        ///     数据组合
+        /// 数据组合
         /// </summary>
         /// <typeparam name="TValueType">数据类型</typeparam>
         public struct TmphData<TValueType> where TValueType : IEquatable<TValueType>
         {
             /// <summary>
-            ///     数据值
+            /// 数据值
             /// </summary>
             public TValueType Value1;
 
             /// <summary>
-            ///     数据值
+            /// 数据值
             /// </summary>
             public TValueType Value2;
         }
 
         /// <summary>
-        ///     数据组合分组结果
+        /// 数据组合分组结果
         /// </summary>
         /// <typeparam name="TValueType">数据类型</typeparam>
         public struct TmphGroupResult<TValueType> where TValueType : IEquatable<TValueType>
         {
             /// <summary>
-            ///     数据组合分组索引集合
+            /// 数据组合分组索引集合
             /// </summary>
             public int[] Indexs;
 
             /// <summary>
-            ///     数据组合集合
+            /// 数据组合集合
             /// </summary>
             public TmphData<TValueType>[] Values;
         }
 
         /// <summary>
-        ///     数据分组结果
+        /// 数据分组结果
         /// </summary>
         /// <typeparam name="TValueType">数据类型</typeparam>
         public struct TmphResult<TValueType> where TValueType : IEquatable<TValueType>
         {
             /// <summary>
-            ///     数据分组索引集合
+            /// 数据分组索引集合
             /// </summary>
             public int[] Indexs;
 
             /// <summary>
-            ///     数据集合
+            /// 数据集合
             /// </summary>
             public TValueType[] Values;
 
             /// <summary>
-            ///     分组数量
+            /// 分组数量
             /// </summary>
             public int Count
             {
@@ -318,7 +340,7 @@ namespace Laurent.Lee.CLB.Algorithm
             }
 
             /// <summary>
-            ///     获取数据分组
+            /// 获取数据分组
             /// </summary>
             /// <param name="index">数据分组索引</param>
             /// <returns>数据分组</returns>

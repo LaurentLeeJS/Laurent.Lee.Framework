@@ -1,13 +1,35 @@
-﻿using System;
-using System.Threading;
-using System.Text;
-using System.Net;
-using System.Net.Sockets;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using Laurent.Lee.CLB.Threading;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Net.Tcp.Http;
+using Laurent.Lee.CLB.Threading;
 using Laurent.Lee.CLB.Web;
+using System;
+using System.Net;
+using System.Net.Security;
+using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading;
 
 namespace Laurent.Lee.CLB.Net
 {
@@ -20,14 +42,17 @@ namespace Laurent.Lee.CLB.Net
         /// 最小URI字节长度
         /// </summary>
         private const int minUriSize = 10;
+
         /// <summary>
         /// 最小缓存区字节长度
         /// </summary>
         private const int minBufferSize = 1 << 10;
+
         /// <summary>
         /// 超时处理队列
         /// </summary>
         private static readonly TmphTimeoutQueue defaultTimeoutQueue = new TmphTimeoutQueue(10);
+
         /// <summary>
         /// HTML标题获取客户端任务池
         /// </summary>
@@ -42,34 +67,42 @@ namespace Laurent.Lee.CLB.Net
                 /// 下一个Uri与回调函数信息
                 /// </summary>
                 private TmphUriInfo next;
+
                 /// <summary>
                 /// 获取HTML标题回调函数
                 /// </summary>
                 private Action<string> callbackHandle;
+
                 /// <summary>
                 /// HTML标题获取客户端任务池
                 /// </summary>
                 private TmphTask task;
+
                 /// <summary>
                 /// HTML标题获取客户端
                 /// </summary>
                 private TmphHtmlTitleClient client;
+
                 /// <summary>
                 /// Uri字符串
                 /// </summary>
                 private string uriString;
+
                 /// <summary>
                 /// Uri
                 /// </summary>
                 private TmphSubArray<byte> uri;
+
                 /// <summary>
                 /// 获取HTML标题回调函数
                 /// </summary>
                 private Action<string> onGet;
+
                 /// <summary>
                 /// 默认编码格式
                 /// </summary>
                 private Encoding encoding;
+
                 /// <summary>
                 /// Uri与回调函数信息
                 /// </summary>
@@ -77,6 +110,7 @@ namespace Laurent.Lee.CLB.Net
                 {
                     callbackHandle = callback;
                 }
+
                 /// <summary>
                 /// 获取HTML标题
                 /// </summary>
@@ -89,6 +123,7 @@ namespace Laurent.Lee.CLB.Net
                     if (uriString == null) client.get(uri, callbackHandle, encoding, 0, false);
                     else client.get(uriString, callbackHandle, encoding);
                 }
+
                 /// <summary>
                 /// 获取HTML标题回调
                 /// </summary>
@@ -107,6 +142,7 @@ namespace Laurent.Lee.CLB.Net
                     }
                     finally { TmphTypePool<TmphUriInfo>.Push(this); }
                 }
+
                 /// <summary>
                 /// 取消调用
                 /// </summary>
@@ -125,6 +161,7 @@ namespace Laurent.Lee.CLB.Net
                     }
                     finally { TmphTypePool<TmphUriInfo>.Push(this); }
                 }
+
                 /// <summary>
                 /// 获取Uri与回调函数信息
                 /// </summary>
@@ -153,6 +190,7 @@ namespace Laurent.Lee.CLB.Net
                     value.encoding = encoding;
                     return value;
                 }
+
                 /// <summary>
                 /// 获取Uri与回调函数信息
                 /// </summary>
@@ -181,6 +219,7 @@ namespace Laurent.Lee.CLB.Net
                     value.encoding = encoding;
                     return value;
                 }
+
                 /// <summary>
                 /// 取消调用
                 /// </summary>
@@ -195,6 +234,7 @@ namespace Laurent.Lee.CLB.Net
                         value = next;
                     }
                 }
+
                 /// <summary>
                 /// Uri队列
                 /// </summary>
@@ -204,10 +244,12 @@ namespace Laurent.Lee.CLB.Net
                     /// 第一个节点
                     /// </summary>
                     public TmphUriInfo Head;
+
                     /// <summary>
                     /// 最后一个节点
                     /// </summary>
                     public TmphUriInfo End;
+
                     /// <summary>
                     /// 清除输出信息
                     /// </summary>
@@ -215,6 +257,7 @@ namespace Laurent.Lee.CLB.Net
                     {
                         Head = End = null;
                     }
+
                     /// <summary>
                     /// 添加输出信息
                     /// </summary>
@@ -228,6 +271,7 @@ namespace Laurent.Lee.CLB.Net
                             End = output;
                         }
                     }
+
                     /// <summary>
                     /// 获取输出信息
                     /// </summary>
@@ -242,38 +286,47 @@ namespace Laurent.Lee.CLB.Net
                     }
                 }
             }
+
             /// <summary>
             /// 客户端集合
             /// </summary>
             private TmphHtmlTitleClient[] clients;
+
             /// <summary>
             /// Uri与回调函数信息集合
             /// </summary>
             private TmphUriInfo.TmphQueue uris;
+
             /// <summary>
             /// 超时处理队列
             /// </summary>
             private TmphTimeoutQueue timeoutQueue;
+
             /// <summary>
             /// 当前客户端位置
             /// </summary>
             private int clientIndex;
+
             /// <summary>
             /// 客户端集合访问锁
             /// </summary>
             private int clientLock;
+
             /// <summary>
             /// 当前实例数量
             /// </summary>
             private int clientCount;
+
             /// <summary>
             /// 收发数据缓冲区字节数
             /// </summary>
             private int bufferSize;
+
             /// <summary>
             /// 最大搜索字节数
             /// </summary>
             private int maxSearchSize;
+
             /// <summary>
             /// 超时值（以毫秒为单位）
             /// </summary>
@@ -284,10 +337,12 @@ namespace Laurent.Lee.CLB.Net
                     timeoutQueue.TimeoutSeconds = value;
                 }
             }
+
             /// <summary>
             /// 是否验证安全证书
             /// </summary>
             private bool isValidateCertificate;
+
             /// <summary>
             /// 是否验证安全证书
             /// </summary>
@@ -313,10 +368,12 @@ namespace Laurent.Lee.CLB.Net
                     }
                 }
             }
+
             /// <summary>
             /// 是否已经释放资源
             /// </summary>
             private int isDisposed;
+
             /// <summary>
             /// HTML标题获取客户端任务池
             /// </summary>
@@ -330,6 +387,7 @@ namespace Laurent.Lee.CLB.Net
                 clients = new TmphHtmlTitleClient[maxClientCount <= 0 ? 1 : maxClientCount];
                 timeoutQueue = new TmphTimeoutQueue(10);
             }
+
             /// <summary>
             /// 释放资源
             /// </summary>
@@ -356,6 +414,7 @@ namespace Laurent.Lee.CLB.Net
                 finally { clientLock = 0; }
                 TmphUriInfo.CancelQueue(uriInfo);
             }
+
             /// <summary>
             /// 获取HTML标题
             /// </summary>
@@ -368,6 +427,7 @@ namespace Laurent.Lee.CLB.Net
                 if (isDisposed == 0 && uri.Length >= minUriSize) get(TmphUriInfo.Get(uri, onGet, encoding));
                 else onGet(null);
             }
+
             /// <summary>
             /// 获取HTML标题
             /// </summary>
@@ -380,6 +440,7 @@ namespace Laurent.Lee.CLB.Net
                 if (isDisposed == 0 && uri.Count >= minUriSize) get(TmphUriInfo.Get(uri, onGet, encoding));
                 else onGet(null);
             }
+
             /// <summary>
             /// 获取HTML标题
             /// </summary>
@@ -425,6 +486,7 @@ namespace Laurent.Lee.CLB.Net
                     if (client != null) uri.Get(this, client);
                 }
             }
+
             /// <summary>
             /// 添加HTML标题获取客户端
             /// </summary>
@@ -456,6 +518,7 @@ namespace Laurent.Lee.CLB.Net
                 }
             }
         }
+
         /// <summary>
         /// HTTP服务版本号
         /// </summary>
@@ -463,170 +526,212 @@ namespace Laurent.Lee.CLB.Net
 Connection: Close
 User-Agent: Mozilla/5.0 (" + Tcp.Http.TmphRequestHeader.LaurentLeeFramework_SpiderUserAgent + @")
 Host: ").GetBytes();
+
         /// <summary>
         /// HASH重定向名称
         /// </summary>
         private static readonly byte[] googleEscapedFragment = ("?_escaped_fragment_=").GetBytes();
+
         /// <summary>
         /// 关闭套接字0超时设置
         /// </summary>
         private static readonly LingerOption lingerOption = new LingerOption(true, 0);
+
         /// <summary>
         /// 安全连接证书验证
         /// </summary>
         private RemoteCertificateValidationCallback validateCertificate;
+
         /// <summary>
         /// 证书验证完成处理
         /// </summary>
         private AsyncCallback validateCertificateCallback;
+
         /// <summary>
         /// 安全连接写入数据完成处理
         /// </summary>
         private AsyncCallback writeCallback;
+
         /// <summary>
         /// 安全连接读取数据完成处理
         /// </summary>
         private AsyncCallback readCallback;
+
         /// <summary>
         /// 请求域名缓冲区
         /// </summary>
         private byte[] hostBuffer;
+
         /// <summary>
         /// 收发数据缓冲区
         /// </summary>
         private byte[] buffer;
+
         /// <summary>
         /// 套接字
         /// </summary>
         private Socket socket;
+
         /// <summary>
         /// 异步连接操作
         /// </summary>
         private SocketAsyncEventArgs connectAsync;
+
         /// <summary>
         /// 异步发送操作
         /// </summary>
         private SocketAsyncEventArgs sendAsync;
+
         /// <summary>
         /// 异步接收操作
         /// </summary>
         private SocketAsyncEventArgs receiveAsync;
+
         /// <summary>
         /// 安全连接
         /// </summary>
         private SslStream sslStream;
+
         /// <summary>
         /// 获取HTML标题回调函数
         /// </summary>
         private Action<string> onGet;
+
         /// <summary>
         /// 用户指定编码
         /// </summary>
         private Encoding defaultEncoding;
+
         /// <summary>
         /// HTTP响应编码
         /// </summary>
         private Encoding responseEncoding;
+
         /// <summary>
         /// HTML页面编码
         /// </summary>
         private Encoding htmlEncoding;
+
         /// <summary>
         /// 收发数据缓冲区字节长度
         /// </summary>
         private int bufferSize;
+
         /// <summary>
         /// 最大搜索字节数
         /// </summary>
         private int maxSearchSize;
+
         /// <summary>
         /// 当前剩余搜索字节数
         /// </summary>
         private int currentSearchSize;
+
         /// <summary>
         /// 请求域名字节长度
         /// </summary>
         private int hostSize;
+
         /// <summary>
         /// 数据缓冲区有效位置
         /// </summary>
         private int bufferIndex;
+
         /// <summary>
         /// 当前处理位置
         /// </summary>
         private int currentIndex;
+
         /// <summary>
         /// 是否正在获取数据
         /// </summary>
         private int isGetting;
+
         /// <summary>
         /// 输出内容字节长度
         /// </summary>
         private int contentLength;
+
         /// <summary>
         /// 最后一次分段字节长度
         /// </summary>
         private int chunkedLength;
+
         /// <summary>
         /// 超时检测标识
         /// </summary>
         private int timeoutIdentity;
+
         /// <summary>
         /// 超时检测
         /// </summary>
         private Func<int, bool> checkTimeoutHandle;
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         private TmphTimeoutQueue timeoutQueue;
+
         /// <summary>
         /// 安全连接错误信息
         /// </summary>
         private SslPolicyErrors? sslPolicyErrors;
+
         /// <summary>
         /// HTTP响应内容类型
         /// </summary>
         private TmphBufferIndex contentType;
+
         /// <summary>
         /// HTML标题
         /// </summary>
         private TmphBufferIndex title;
+
         /// <summary>
         /// 是否验证安全证书
         /// </summary>
         public bool IsValidateCertificate;
+
         /// <summary>
         /// 是否安全连接
         /// </summary>
         private bool isHttps;
+
         /// <summary>
         /// 是否压缩数据
         /// </summary>
         private bool isGzip;
+
         /// <summary>
         /// 是否已经解析头部
         /// </summary>
         private bool isHeader;
+
         /// <summary>
         /// 是否存在HTML节点
         /// </summary>
         private bool isHtml;
+
         /// <summary>
         /// 是否分段传输
         /// </summary>
         private bool isChunked;
+
         /// <summary>
         /// 是否关闭连接
         /// </summary>
         private bool isCloseConnection;
+
         /// <summary>
         /// 是否位置压缩编码类型
         /// </summary>
         private bool isUnknownEncoding;
+
         /// <summary>
         /// 是否重定向
         /// </summary>
         private bool isLocation;
+
         /// <summary>
         /// HTML标题获取客户端
         /// </summary>
@@ -642,6 +747,7 @@ Host: ").GetBytes();
             this.maxSearchSize = Math.Max(this.bufferSize = bufferSize - sizeof(int), maxSearchSize);
             setAsync();
         }
+
         /// <summary>
         /// HTML标题获取客户端
         /// </summary>
@@ -657,6 +763,7 @@ Host: ").GetBytes();
             this.maxSearchSize = Math.Max(bufferSize = buffer.Length - sizeof(int), maxSearchSize);
             setAsync();
         }
+
         /// <summary>
         /// 设置异步操作
         /// </summary>
@@ -681,6 +788,7 @@ Host: ").GetBytes();
             checkTimeoutHandle = checkTimeout;
             timeoutQueue = defaultTimeoutQueue;
         }
+
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -703,6 +811,7 @@ Host: ").GetBytes();
 
             TmphMemoryPool.TinyBuffers.Push(ref hostBuffer);
         }
+
         /// <summary>
         /// 设置超时
         /// </summary>
@@ -711,6 +820,7 @@ Host: ").GetBytes();
         {
             if (identity == timeoutIdentity) timeoutQueue.Add(socket, checkTimeoutHandle, identity);
         }
+
         /// <summary>
         /// 超时检测
         /// </summary>
@@ -720,6 +830,7 @@ Host: ").GetBytes();
         {
             return identity == timeoutIdentity;
         }
+
         /// <summary>
         /// 获取HTML标题
         /// </summary>
@@ -732,6 +843,7 @@ Host: ").GetBytes();
             if (uri.Length < minUriSize) onGet(null);
             else get(uri, onGet, encoding);
         }
+
         /// <summary>
         /// 获取HTML标题
         /// </summary>
@@ -753,6 +865,7 @@ Host: ").GetBytes();
             }
             finally { pool.Push(ref data); }
         }
+
         /// <summary>
         /// 获取HTML标题
         /// </summary>
@@ -765,6 +878,7 @@ Host: ").GetBytes();
             if (uri.Count < minUriSize) onGet(null);
             else get(uri, onGet, encoding, 0, false);
         }
+
         /// <summary>
         /// 获取HTML标题
         /// </summary>
@@ -837,11 +951,10 @@ Host: ").GetBytes();
                                 int urlSize = path.StartIndex + path.Count - uri.StartIndex;
                                 if (urlSize <= Laurent.Lee.CLB.TmphMemoryPool.TinyBuffers.Size)
                                 {
-
                                 }
                                 if (Interlocked.CompareExchange(ref isGetting, 1, 0) == 0)
                                 {
-                                    int index = sizeof(int) * 2 + path.Count + httpVersion.Length + hostSize, hashCount = 0; 
+                                    int index = sizeof(int) * 2 + path.Count + httpVersion.Length + hostSize, hashCount = 0;
                                     if (hash.Count != 0)
                                     {
                                         index += googleEscapedFragment.Length + hash.Count;
@@ -949,6 +1062,7 @@ Host: ").GetBytes();
             }
             onGet(null);
         }
+
         /// <summary>
         /// 获取HTML标题回调
         /// </summary>
@@ -963,6 +1077,7 @@ Host: ").GetBytes();
             isGetting = 0;
             onGet(title);
         }
+
         /// <summary>
         /// 获取HTML标题回调
         /// </summary>
@@ -980,6 +1095,7 @@ Host: ").GetBytes();
                 TmphLog.Error.Add(error, null, false);
             }
         }
+
         /// <summary>
         /// 套接字连接结束操作
         /// </summary>
@@ -1022,6 +1138,7 @@ Host: ").GetBytes();
             //else TmphLog.Default.Add(connectAsync.RemoteEndPoint.ToString() + " " + async.SocketError.ToString(), false, false);
             callback(null);
         }
+
         /// <summary>
         /// 安全连接证书验证
         /// </summary>
@@ -1035,6 +1152,7 @@ Host: ").GetBytes();
             this.sslPolicyErrors = sslPolicyErrors;
             return !IsValidateCertificate || sslPolicyErrors == SslPolicyErrors.None;
         }
+
         /// <summary>
         /// 证书验证完成处理
         /// </summary>
@@ -1065,6 +1183,7 @@ Host: ").GetBytes();
             }
             callback(null);
         }
+
         /// <summary>
         /// 发送数据操作
         /// </summary>
@@ -1096,6 +1215,7 @@ Host: ").GetBytes();
             //else TmphLog.Default.Add("onSend " + async.SocketError.ToString(), false, false);
             callback(null);
         }
+
         /// <summary>
         /// 安全连接写入数据完成处理
         /// </summary>
@@ -1117,6 +1237,7 @@ Host: ").GetBytes();
             }
             callback(null);
         }
+
         /// <summary>
         /// 接收数据操作
         /// </summary>
@@ -1139,6 +1260,7 @@ Host: ").GetBytes();
             //else TmphLog.Default.Add("onReceive " + async.SocketError.ToString(), false, false);
             callback(null);
         }
+
         /// <summary>
         /// 安全连接读取数据完成处理
         /// </summary>
@@ -1156,6 +1278,7 @@ Host: ").GetBytes();
             }
             callback(null);
         }
+
         /// <summary>
         /// 接收数据操作
         /// </summary>
@@ -1285,6 +1408,7 @@ Host: ").GetBytes();
             }
             return false;
         }
+
         /// <summary>
         /// 解析头部数据
         /// </summary>
@@ -1323,7 +1447,7 @@ Host: ").GetBytes();
                     if (current == end) return false;
                     TmphSubArray<byte> name = TmphSubArray<byte>.Unsafe(buffer, (int)(start - bufferFixed), (int)(current - start));
                     *end = 13;
-                    while (*++current == ' ');
+                    while (*++current == ' ') ;
                     for (start = current; *current != 13; ++current) ;
                     Action<TmphHtmlTitleClient, TmphBufferIndex> parseHeaderName = parses.Get(name, null);
                     if (parseHeaderName != null) parseHeaderName(this, new TmphBufferIndex { StartIndex = (short)(start - bufferFixed), Length = (short)(current - start) });
@@ -1367,7 +1491,7 @@ Host: ").GetBytes();
                         }
                         for (*end = (byte)';'; *current != ';'; ++current) ;
                         if (current == end) break;
-                        while (*++current == ' ');
+                        while (*++current == ' ') ;
                     }
                     if (isHtml != 0) return true;
                 }
@@ -1387,7 +1511,7 @@ Host: ").GetBytes();
                             | ((*(int*)(current + sizeof(int)) & 0xffffff) ^ (':' + ('/' << 8) + ('/' << 16)))) == 0)
                         {
                             byte* start = current;
-                            while (*++current != 13);
+                            while (*++current != 13) ;
                             int length = (int)(current - start);
                             if (*start == '/')
                             {
@@ -1441,6 +1565,7 @@ Host: ").GetBytes();
             }
             return false;
         }
+
         /// <summary>
         /// 检测分段传输长度
         /// </summary>
@@ -1557,7 +1682,7 @@ Host: ").GetBytes();
                 while (true);
             }
             while (true);
-        COPY:
+            COPY:
             if (startIndex != copyIndex)
             {
                 int count = bufferIndex - copyIndex;
@@ -1565,6 +1690,7 @@ Host: ").GetBytes();
                 bufferIndex = startIndex + count;
             }
         }
+
         /// <summary>
         /// 解析HTML标题
         /// </summary>
@@ -1665,6 +1791,7 @@ Host: ").GetBytes();
                 while (true);
             }
         }
+
         /// <summary>
         /// 解析gzip+HTML标题
         /// </summary>
@@ -1707,6 +1834,7 @@ Host: ").GetBytes();
                 }
             }
         }
+
         /// <summary>
         /// HTTP响应内容类型解析
         /// </summary>
@@ -1716,6 +1844,7 @@ Host: ").GetBytes();
         {
             client.contentType = value;
         }
+
         /// <summary>
         /// HTTP响应压缩编码类型解析
         /// </summary>
@@ -1736,6 +1865,7 @@ Host: ").GetBytes();
             }
             client.isUnknownEncoding = true;
         }
+
         /// <summary>
         /// HTTP响应传输编码类型解析
         /// </summary>
@@ -1756,6 +1886,7 @@ Host: ").GetBytes();
                 }
             }
         }
+
         /// <summary>
         /// HTTP连接状态解析
         /// </summary>
@@ -1776,6 +1907,7 @@ Host: ").GetBytes();
                 }
             }
         }
+
         /// <summary>
         /// HTTP头名称唯一哈希
         /// </summary>
@@ -1786,18 +1918,21 @@ Host: ").GetBytes();
             /// HTTP头名称
             /// </summary>
             public TmphSubArray<byte> Name;
+
             /// <summary>
             /// 隐式转换
             /// </summary>
             /// <param name="name">HTTP头名称</param>
             /// <returns>HTTP头名称唯一哈希</returns>
             public static implicit operator TmphHeaderName(byte[] name) { return new TmphHeaderName { Name = TmphSubArray<byte>.Unsafe(name, 0, name.Length) }; }
+
             /// <summary>
             /// 隐式转换
             /// </summary>
             /// <param name="name">HTTP头名称</param>
             /// <returns>HTTP头名称唯一哈希</returns>
             public static implicit operator TmphHeaderName(TmphSubArray<byte> name) { return new TmphHeaderName { Name = name }; }
+
             /// <summary>
             /// 获取哈希值
             /// </summary>
@@ -1806,6 +1941,7 @@ Host: ").GetBytes();
             {
                 return Name.Count < 10 ? 0 : Name.Array[Name.StartIndex + Name.Count - 10] & 7;
             }
+
             /// <summary>
             /// 判断是否相等
             /// </summary>
@@ -1822,6 +1958,7 @@ Host: ").GetBytes();
                 }
                 return false;
             }
+
             /// <summary>
             /// 判断是否相等
             /// </summary>
@@ -1832,10 +1969,12 @@ Host: ").GetBytes();
                 return Equals((TmphHeaderName)obj);
             }
         }
+
         /// <summary>
         /// HTTP头名称解析委托
         /// </summary>
         private static readonly TmphUniqueDictionary<TmphHeaderName, Action<TmphHtmlTitleClient, TmphBufferIndex>> parses;
+
         static TmphHtmlTitleClient()
         {
             TmphList<TmphKeyValue<TmphHeaderName, Action<TmphHtmlTitleClient, TmphBufferIndex>>> parseList = new TmphList<TmphKeyValue<TmphHeaderName, Action<TmphHtmlTitleClient, TmphBufferIndex>>>();

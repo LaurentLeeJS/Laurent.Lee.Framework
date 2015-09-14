@@ -1,7 +1,26 @@
-﻿using System;
-using System.Reflection;
-using Laurent.Lee.CLB.Code.CSharp;
-using Laurent.Lee.CLB.Reflection;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache
@@ -28,6 +47,7 @@ namespace Laurent.Lee.CLB.Sql.Cache
                 if (!newMemberMap.IsDefault) Laurent.Lee.CLB.Emit.TmphMemberCopyer<TModelType>.Copy(value, newValue, newMemberMap);
             }
         }
+
         /// <summary>
         /// 更新缓存数据
         /// </summary>
@@ -44,6 +64,7 @@ namespace Laurent.Lee.CLB.Sql.Cache
                 if (!updateMemberMap.IsDefault) Laurent.Lee.CLB.Emit.TmphMemberCopyer<TModelType>.Copy(value, newValue, updateMemberMap);
             }
         }
+
         /// <summary>
         /// SQL操作缓存
         /// </summary>
@@ -53,10 +74,12 @@ namespace Laurent.Lee.CLB.Sql.Cache
             : base(sqlTool, group)
         {
         }
+
         /// <summary>
         /// 重新加载缓存事件
         /// </summary>
         public event Action OnReset;
+
         /// <summary>
         /// 重置缓存
         /// </summary>
@@ -70,6 +93,7 @@ namespace Laurent.Lee.CLB.Sql.Cache
             finally { Monitor.Exit(SqlTool.Lock); }
             if (OnReset != null) OnReset();
         }
+
         /// <summary>
         /// 重置缓存
         /// </summary>

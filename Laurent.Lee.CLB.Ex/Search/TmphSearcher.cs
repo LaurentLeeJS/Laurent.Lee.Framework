@@ -1,7 +1,29 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using Laurent.Lee.CLB.Threading;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using Laurent.Lee.CLB.Threading;
 
 namespace Laurent.Lee.CLB.Search
 {
@@ -19,39 +41,48 @@ namespace Laurent.Lee.CLB.Search
             /// 未知
             /// </summary>
             Unknown,
+
             /// <summary>
             /// 其它字母
             /// </summary>
             OtherLetter,
+
             /// <summary>
             /// 字母
             /// </summary>
             Letter,
+
             /// <summary>
             /// 数字
             /// </summary>
             Number,
+
             /// <summary>
             /// 保留字符
             /// </summary>
             Keep,
         }
+
         /// <summary>
         /// 分词trie图
         /// </summary>
         protected TmphTrieGraph wordTrieGraph;
+
         /// <summary>
         /// 结果访问锁
         /// </summary>
         protected int resultLock;
+
         /// <summary>
         /// 最大搜索字符串长度
         /// </summary>
         protected int maxSearchSize;
+
         /// <summary>
         /// 总词频
         /// </summary>
         protected int wordCount = 1;
+
         /// <summary>
         /// 分词搜索器
         /// </summary>
@@ -62,6 +93,7 @@ namespace Laurent.Lee.CLB.Search
             this.maxSearchSize = maxSearchSize < 1 ? 1 : maxSearchSize;
             this.wordTrieGraph = wordTrieGraph;
         }
+
         /// <summary>
         /// 文本分词
         /// </summary>
@@ -81,7 +113,7 @@ namespace Laurent.Lee.CLB.Search
                 else if (words.Count != 0) words.Clear();
                 TmphList<TmphKeyValue<int, int>> matchs = TmphTypePool<TmphList<TmphKeyValue<int, int>>>.Pop() ?? new TmphList<TmphKeyValue<int, int>>();
                 byte* charTypes = charTypePointer.Byte;
-                for (char* start = textFixed, end = textFixed + length; start != end; )
+                for (char* start = textFixed, end = textFixed + length; start != end;)
                 {
                     if (*start == ' ')
                     {
@@ -165,6 +197,7 @@ namespace Laurent.Lee.CLB.Search
                 return words;
             }
         }
+
         /// <summary>
         /// 搜索字符串分词
         /// </summary>
@@ -236,6 +269,7 @@ namespace Laurent.Lee.CLB.Search
             }
             return null;
         }
+
         /// <summary>
         /// 数据文本分词
         /// </summary>
@@ -277,6 +311,7 @@ namespace Laurent.Lee.CLB.Search
             }
             return null;
         }
+
         /// <summary>
         /// 释放分词结果
         /// </summary>
@@ -287,10 +322,12 @@ namespace Laurent.Lee.CLB.Search
             values.Clear();
             TmphTypePool<Dictionary<TmphHashString, TmphList<int>>>.Push(ref values);
         }
+
         /// <summary>
         /// 字符类型集合
         /// </summary>
         private static TmphPointer charTypePointer;
+
         unsafe static TmphSearcher()
         {
             charTypePointer = TmphUnmanaged.Get(65536, true);
@@ -313,6 +350,7 @@ namespace Laurent.Lee.CLB.Search
             }
         }
     }
+
     /// <summary>
     /// 分词搜索器
     /// </summary>
@@ -328,10 +366,12 @@ namespace Laurent.Lee.CLB.Search
             /// 词频
             /// </summary>
             public int Count;
+
             /// <summary>
             /// 数据结果
             /// </summary>
             public Dictionary<TKeyType, int[]> Values;
+
             /// <summary>
             /// 添加数据结果
             /// </summary>
@@ -342,6 +382,7 @@ namespace Laurent.Lee.CLB.Search
                 Values.Add(key, values);
                 Count += values.Length;
             }
+
             /// <summary>
             /// 删除关键字
             /// </summary>
@@ -359,18 +400,22 @@ namespace Laurent.Lee.CLB.Search
                 return 0;
             }
         }
+
         /// <summary>
         /// 关键字数据结果池
         /// </summary>
         private static TmphCounter[] counterPool = new TmphCounter[256];
+
         /// <summary>
         /// 当前分配结果索引
         /// </summary>
         private static int counterIndex;
+
         /// <summary>
         /// 关键字数据结果池访问锁
         /// </summary>
         private static int counterLock;
+
         /// <summary>
         /// 获取结果索引
         /// </summary>
@@ -391,10 +436,12 @@ namespace Laurent.Lee.CLB.Search
             }
             finally { counterLock = 0; }
         }
+
         /// <summary>
         /// 关键字数据结果集合
         /// </summary>
         private Dictionary<TmphHashString, int> results = TmphDictionary.CreateHashString<int>();
+
         /// <summary>
         /// 分词搜索器
         /// </summary>
@@ -406,6 +453,7 @@ namespace Laurent.Lee.CLB.Search
         {
             foreach (TmphKeyValue<string, TKeyType> value in values) add(value.Key, value.Value);
         }
+
         /// <summary>
         /// 添加新的数据
         /// </summary>
@@ -421,6 +469,7 @@ namespace Laurent.Lee.CLB.Search
                 wordCount += result.Value.Count;
             }
         }
+
         /// <summary>
         /// 添加新的数据
         /// </summary>
@@ -435,6 +484,7 @@ namespace Laurent.Lee.CLB.Search
                 free(values);
             }
         }
+
         /// <summary>
         /// 添加新的数据
         /// </summary>
@@ -457,6 +507,7 @@ namespace Laurent.Lee.CLB.Search
                 }
             }
         }
+
         /// <summary>
         /// 删除新的数据
         /// </summary>
@@ -471,6 +522,7 @@ namespace Laurent.Lee.CLB.Search
                 if (results.TryGetValue(result.Key, out counterIndex)) wordCount -= pool[counterIndex].Remove(key);
             }
         }
+
         /// <summary>
         /// 删除无效的数据
         /// </summary>
@@ -493,6 +545,7 @@ namespace Laurent.Lee.CLB.Search
                 }
             }
         }
+
         /// <summary>
         /// 修改数据
         /// </summary>
@@ -516,6 +569,7 @@ namespace Laurent.Lee.CLB.Search
                 if (values != null) free(values);
             }
         }
+
         ///// <summary>
         ///// 判断是否存在匹配项
         ///// </summary>
@@ -582,6 +636,7 @@ namespace Laurent.Lee.CLB.Search
                 }
             }
         }
+
         static TmphSearcher()
         {
             if (Laurent.Lee.CLB.Config.TmphAppSetting.IsCheckMemory) TmphCheckMemory.Add(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);

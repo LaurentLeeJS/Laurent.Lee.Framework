@@ -1,10 +1,30 @@
-﻿using System;
-using System.Reflection;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.Remoting;
-using Laurent.Lee.CLB.Threading;
-using Laurent.Lee.CLB.Reflection;
 
 namespace Laurent.Lee.CLB
 {
@@ -15,7 +35,11 @@ namespace Laurent.Lee.CLB
         {
             [NonSerialized]
             private Dictionary<TmphHashString, Assembly> assemblys = TmphDictionary.CreateHashString<Assembly>();
-            public TmphAssemblyLoader() { }
+
+            public TmphAssemblyLoader()
+            {
+            }
+
             public Assembly Load(string assemblyFileName)
             {
                 if (assemblyFileName.Length != 0)
@@ -40,6 +64,7 @@ namespace Laurent.Lee.CLB
                 }
                 return null;
             }
+
             /// <summary>
             /// 加载程序集获取类型
             /// </summary>
@@ -51,6 +76,7 @@ namespace Laurent.Lee.CLB
                 Assembly assembly = Load(assemblyFileName);
                 return assembly != null ? assembly.GetType(typeName) : null;
             }
+
             /// <summary>
             /// 加载程序集并创建对象
             /// </summary>
@@ -73,6 +99,7 @@ namespace Laurent.Lee.CLB
                 }
                 return null;
             }
+
             /// <summary>
             /// 加载程序集并创建包装对象
             /// </summary>
@@ -92,35 +119,42 @@ namespace Laurent.Lee.CLB
                 return null;
             }
         }
+
         /// <summary>
         /// 默认程序集名称
         /// </summary>
         [NonSerialized]
         private static readonly string assemblyName = typeof(TmphDynamicDomain).Assembly.FullName;
+
         /// <summary>
         /// 默认程序集加载器类型名称
         /// </summary>
         [NonSerialized]
         private static readonly string assemblyLoaderName = typeof(TmphDynamicDomain.TmphAssemblyLoader).FullName;
+
         /// <summary>
         /// 应用程序域
         /// </summary>
         private readonly AppDomainSetup setup = new AppDomainSetup();
+
         /// <summary>
         /// 应用程序域
         /// </summary>
         [NonSerialized]
         private AppDomain domain;
+
         /// <summary>
         /// 程序集加载器
         /// </summary>
         [NonSerialized]
         private TmphAssemblyLoader loader;
+
         /// <summary>
         /// 程序集私有目录
         /// </summary>
         [NonSerialized]
         private string privatePath;
+
         /// <summary>
         /// 初始化动态应用程序域
         /// </summary>
@@ -151,6 +185,7 @@ namespace Laurent.Lee.CLB
             domain = AppDomain.CreateDomain(name, null, setup);
             loader = (TmphAssemblyLoader)domain.CreateInstanceAndUnwrap(assemblyName, assemblyLoaderName);
         }
+
         /// <summary>
         /// 卸载应用程序域
         /// </summary>
@@ -170,6 +205,7 @@ namespace Laurent.Lee.CLB
                 loader = null;
             }
         }
+
         /// <summary>
         /// 加载程序集
         /// </summary>
@@ -186,6 +222,7 @@ namespace Laurent.Lee.CLB
             finally { AppDomain.CurrentDomain.ClearPrivatePath(); }
 #pragma warning restore 618
         }
+
         /// <summary>
         /// 加载程序集获取类型
         /// </summary>
@@ -204,6 +241,7 @@ namespace Laurent.Lee.CLB
             finally { AppDomain.CurrentDomain.ClearPrivatePath(); }
 #pragma warning restore 618
         }
+
         /// <summary>
         /// 加载程序集并创建对象
         /// </summary>
@@ -223,6 +261,7 @@ namespace Laurent.Lee.CLB
             finally { AppDomain.CurrentDomain.ClearPrivatePath(); }
 #pragma warning restore 618
         }
+
         /// <summary>
         /// 加载程序集并创建包装对象
         /// </summary>

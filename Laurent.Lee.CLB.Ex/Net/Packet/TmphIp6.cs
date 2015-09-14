@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.Net.Packet
 {
@@ -11,14 +31,17 @@ namespace Laurent.Lee.CLB.Net.Packet
         /// IP标头默认字节数
         /// </summary>
         public const int DefaultHeaderSize = 40;
+
         /// <summary>
         /// IP标头扩展首部位图
         /// </summary>
         public const ulong ExpandProtocol = (1UL << 60) + (1UL << 51) + (1UL << 50) + (1UL << 44) + (1UL << 43) + 1UL;
+
         /// <summary>
         /// 数据
         /// </summary>
         private TmphSubArray<byte> data;
+
         /// <summary>
         /// 数据包是否有效
         /// </summary>
@@ -26,10 +49,12 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array != null; }
         }
+
         /// <summary>
         /// IP标头结束位置
         /// </summary>
         private uint headerEndIndex;
+
         /// <summary>
         /// IP版本号，值为6
         /// </summary>
@@ -37,6 +62,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex] >> 4; }
         }
+
         /// <summary>
         /// 流量类型，默认为0
         /// </summary>
@@ -44,6 +70,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return (((uint)data.Array[data.StartIndex] & 15) << 4) + ((uint)data.Array[data.StartIndex + 1] >> 4); }
         }
+
         /// <summary>
         /// 标识唯一的流标签(实验阶段的可选字段)
         /// </summary>
@@ -55,6 +82,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                     + data.Array[data.StartIndex + 3];
             }
         }
+
         /// <summary>
         /// 数据包长度(不包括40字节的头部,但包括扩展部分)
         /// </summary>
@@ -62,6 +90,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 4] << 8) + data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// IP协议
         /// </summary>
@@ -69,6 +98,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return (TmphIp.TmphProtocol)data.Array[data.StartIndex + 6]; }
         }
+
         /// <summary>
         /// 跳数限制
         /// </summary>
@@ -76,6 +106,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex + 7]; }
         }
+
         /// <summary>
         /// 源IP地址
         /// </summary>
@@ -86,6 +117,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                 return TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + 8, 16);
             }
         }
+
         /// <summary>
         /// 目的IP地址
         /// </summary>
@@ -96,6 +128,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                 return TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + 24, 16);
             }
         }
+
         /// <summary>
         /// IP头校验和(应用于TCP,UDP,ICMPv6等协议)
         /// </summary>
@@ -128,6 +161,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                 }
             }
         }
+
         /// <summary>
         /// 下层应用数据包
         /// </summary>
@@ -138,6 +172,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                 return TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + (int)headerEndIndex, data.Count - (int)headerEndIndex);
             }
         }
+
         /// <summary>
         /// IPv6包
         /// </summary>

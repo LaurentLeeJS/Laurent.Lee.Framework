@@ -1,6 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Threading;
+using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Laurent.Lee.CLB.OpenAPI
@@ -14,14 +36,17 @@ namespace Laurent.Lee.CLB.OpenAPI
         /// 第三方登录URL重定向Cooike名称
         /// </summary>
         public static readonly byte[] OpenLoginUrlCookieName = ("OpenLoginUrl").GetBytes();
+
         /// <summary>
         /// 状态验证
         /// </summary>
         private static readonly Dictionary<ulong, DateTime> states = TmphDictionary.CreateULong<DateTime>();
+
         /// <summary>
         /// 状态验证访问锁
         /// </summary>
         private static int stateLock;
+
         /// <summary>
         /// 验证状态
         /// </summary>
@@ -31,6 +56,7 @@ namespace Laurent.Lee.CLB.OpenAPI
         {
             return Verify(state.parseHex16NoCheck());
         }
+
         /// <summary>
         /// 验证状态
         /// </summary>
@@ -52,6 +78,7 @@ namespace Laurent.Lee.CLB.OpenAPI
             }
             return false;
         }
+
         /// <summary>
         /// 获取状态验证
         /// </summary>
@@ -77,6 +104,7 @@ namespace Laurent.Lee.CLB.OpenAPI
             }
             while (true);
         }
+
         /// <summary>
         /// 获取状态验证字符串
         /// </summary>
@@ -85,18 +113,22 @@ namespace Laurent.Lee.CLB.OpenAPI
         {
             return Get().toHex16();
         }
+
         /// <summary>
         /// 刷新状态验证集合
         /// </summary>
         private static TmphSubArray<ulong> refreshStates;
+
         /// <summary>
         /// 是否正在刷新状态验证集合
         /// </summary>
         private static int isRefresh;
+
         /// <summary>
         /// 刷新状态验证集合
         /// </summary>
         private static readonly Action refreshHandle = refresh;
+
         /// <summary>
         /// 刷新状态验证集合
         /// </summary>
@@ -128,6 +160,7 @@ namespace Laurent.Lee.CLB.OpenAPI
                 else Laurent.Lee.CLB.Threading.TmphTimerTask.Default.Add(refreshHandle, TmphDate.NowSecond.AddMinutes(10));
             }
         }
+
         static TmphState()
         {
             if (Laurent.Lee.CLB.Config.TmphAppSetting.IsCheckMemory) TmphCheckMemory.Add(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);

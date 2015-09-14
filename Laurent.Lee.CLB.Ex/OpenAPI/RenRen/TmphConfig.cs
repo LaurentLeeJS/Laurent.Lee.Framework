@@ -1,7 +1,28 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System.Collections.Specialized;
 using System.Text;
 using System.Web;
-using System.Collections.Specialized;
 
 namespace Laurent.Lee.CLB.OpenAPI.RenRen
 {
@@ -14,28 +35,36 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
         /// 编码绑定请求
         /// </summary>
         public static readonly TmphEncodingRequest Request = new TmphEncodingRequest(OpenAPI.TmphRequest.Default, Encoding.UTF8);
+
         /// <summary>
         /// 默认空表单
         /// </summary>
         private static readonly NameValueCollection defaultForm = new NameValueCollection();
+
 #pragma warning disable 649
+
         /// <summary>
         /// appid
         /// </summary>
         private string client_id;
+
         /// <summary>
         /// appkey
         /// </summary>
         private string client_secret;
+
         /// <summary>
         /// 登陆成功回调地址
         /// </summary>
         private string redirect_uri;
+
 #pragma warning restore 649
+
         /// <summary>
         /// URL编码 登陆成功回调地址
         /// </summary>
         private string encodeRedirectUri;
+
         /// <summary>
         /// URL编码 登陆成功回调地址
         /// </summary>
@@ -47,6 +76,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
                 return encodeRedirectUri;
             }
         }
+
         /// <summary>
         /// 获取api调用
         /// </summary>
@@ -58,6 +88,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
             if (token != null) return new api(this, token);
             return null;
         }
+
         /// <summary>
         /// 默认配置
         /// </summary>

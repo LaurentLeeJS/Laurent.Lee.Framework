@@ -1,11 +1,32 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using Laurent.Lee.CLB.Algorithm;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
-using Laurent.Lee.CLB.Algorithm;
-using Laurent.Lee.CLB.IO;
 
 namespace Laurent.Lee.CLB.Drawing.GIF
 {
@@ -22,6 +43,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
 #else
         private static readonly TmphUnmanagedPool lzwEncodeTableBuffer = TmphUnmanagedPoolProxy.GetPool(4096 * 256 * 2);
 #endif
+
         /// <summary>
         /// 24位色彩
         /// </summary>
@@ -33,21 +55,25 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// </summary>
             [FieldOffset(0)]
             public int Value;
+
             /// <summary>
             /// 红色
             /// </summary>
             [FieldOffset(0)]
             public byte Red;
+
             /// <summary>
             /// 绿色
             /// </summary>
             [FieldOffset(1)]
             public byte Green;
+
             /// <summary>
             /// 蓝色
             /// </summary>
             [FieldOffset(2)]
             public byte Blue;
+
             /// <summary>
             /// HASH值
             /// </summary>
@@ -56,6 +82,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             {
                 return Value;
             }
+
             /// <summary>
             /// 判断是否相等
             /// </summary>
@@ -65,6 +92,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             {
                 return Value == other.Value;
             }
+
             /// <summary>
             /// 判断是否相等
             /// </summary>
@@ -75,6 +103,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 return Equals((TmphColor)obj);
             }
         }
+
         /// <summary>
         /// 图象块
         /// </summary>
@@ -84,38 +113,47 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// X方向偏移量
             /// </summary>
             public short LeftOffset { get; private set; }
+
             /// <summary>
             /// Y方向偏移量
             /// </summary>
             public short TopOffset { get; private set; }
+
             /// <summary>
             /// 图象宽度
             /// </summary>
             public short Width { get; private set; }
+
             /// <summary>
             /// 图象高度
             /// </summary>
             public short Height { get; private set; }
+
             /// <summary>
             /// 颜色列表
             /// </summary>
             public TmphColor[] Colors { get; private set; }
+
             /// <summary>
             /// 图象数据是否连续方式排列，否则使用顺序排列
             /// </summary>
             public byte InterlaceFlag { get; private set; }
+
             /// <summary>
             /// 颜色列表是否分类排列
             /// </summary>
             public byte SortFlag { get; private set; }
+
             /// <summary>
             /// LZW编码初始码表大小的位数
             /// </summary>
             public byte LzwSize { get; internal set; }
+
             /// <summary>
             /// 压缩数据集合
             /// </summary>
             public TmphList<TmphSubArray<byte>> lzwDatas;
+
             /// <summary>
             /// 位图填充
             /// </summary>
@@ -125,14 +163,17 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 /// 当前颜色索引
                 /// </summary>
                 public byte* CurrentIndex;
+
                 /// <summary>
                 /// 颜色列表
                 /// </summary>
                 public TmphColor* Colors;
+
                 /// <summary>
                 /// 图像宽度
                 /// </summary>
                 public int Width;
+
                 /// <summary>
                 /// 填充颜色列表
                 /// </summary>
@@ -155,6 +196,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     }
                     CurrentIndex = row;
                 }
+
                 /// <summary>
                 /// 填充颜色索引
                 /// </summary>
@@ -178,6 +220,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     CurrentIndex = row;
                 }
             }
+
             /// <summary>
             /// 创建位图
             /// </summary>
@@ -242,6 +285,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 finally { lzwEncodeTableBuffer.Push(ref colorIndexs); }
                 return null;
             }
+
             /// <summary>
             /// 图象标识符设置
             /// </summary>
@@ -257,6 +301,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 SortFlag = (byte)(localFlag & 0x20);
                 if ((localFlag & 0x80) != 0) Colors = new TmphColor[1 << ((localFlag & 7) + 1)];
             }
+
             /// <summary>
             /// LZW压缩解码字符串缓冲区
             /// </summary>
@@ -265,6 +310,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
 #else
             private static readonly TmphMemoryPool stringBuffers = TmphMemoryPoolProxy.GetPool(4097 * 8);
 #endif
+
             /// <summary>
             /// LZW压缩解码
             /// </summary>
@@ -388,6 +434,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 finally { stringBuffers.Push(ref stringBuffer); }
             }
         }
+
         /// <summary>
         /// 图形控制扩展
         /// </summary>
@@ -402,55 +449,68 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 /// 不使用处置方法
                 /// </summary>
                 None = 0,
+
                 /// <summary>
                 /// 不处置图形，保留当前的图像，再绘制一帧图像在上面
                 /// </summary>
                 KeepCurrent = 1,
+
                 /// <summary>
                 /// 回复到背景色
                 /// </summary>
                 BackgroundColor = 2,
+
                 /// <summary>
                 /// 回复到先前状态
                 /// </summary>
                 PreviousState = 3,
+
                 /// <summary>
                 /// 自定义
                 /// </summary>
                 Custom4 = 4,
+
                 /// <summary>
                 /// 自定义
                 /// </summary>
                 Custom5 = 5,
+
                 /// <summary>
                 /// 自定义
                 /// </summary>
                 Custom6 = 6,
+
                 /// <summary>
                 /// 自定义
                 /// </summary>
                 Custom7 = 7
             }
+
             /// <summary>
             /// 延迟时间，单位1/100秒
             /// </summary>
             public short DelayTime { get; private set; }
+
             /// <summary>
             /// 透明色索引值
             /// </summary>
             public byte TransparentColorIndex { get; private set; }
+
             /// <summary>
             /// 是否使用使用透明颜色
             /// </summary>
             public byte IsTransparentColor { get; private set; }
+
             /// <summary>
             /// 用户输入标志，指出是否期待用户有输入之后才继续进行下去，置位表示期待，值否表示不期待。
             /// </summary>
             public byte IsUseInput { get; private set; }
+
             /// <summary>
             /// 图形处置方法
             /// </summary>
             public TmphMethodType MethodType { get; private set; }
+
             /// <summary>
             /// 图形控制扩展
             /// </summary>
@@ -465,6 +525,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 TransparentColorIndex = *(data + 3);
             }
         }
+
         /// <summary>
         /// 图形文本扩展
         /// </summary>
@@ -474,38 +535,47 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// 文本框离逻辑屏幕的左边界距离
             /// </summary>
             public short Left { get; private set; }
+
             /// <summary>
             /// 文本框离逻辑屏幕的上边界距离
             /// </summary>
             public short Top { get; private set; }
+
             /// <summary>
             /// 文本框像素宽度
             /// </summary>
             public short Width { get; private set; }
+
             /// <summary>
             /// 文本框像素高度
             /// </summary>
             public short Height { get; private set; }
+
             /// <summary>
             /// 字符宽度
             /// </summary>
             public short CharacterWidth { get; private set; }
+
             /// <summary>
             /// 字符高度
             /// </summary>
             public short CharacterHeight { get; private set; }
+
             /// <summary>
             /// 前景色在全局颜色列表中的索引
             /// </summary>
             public byte ColorIndex { get; private set; }
+
             /// <summary>
             /// 背景色在全局颜色列表中的索引
             /// </summary>
             public byte BlackgroundColorIndex { get; private set; }
+
             /// <summary>
             /// 文本数据块集合
             /// </summary>
             public TmphList<TmphSubArray<byte>> text;
+
             /// <summary>
             /// 文本数据
             /// </summary>
@@ -513,6 +583,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             {
                 get { return TmphDecoder.BlocksToByte(text); }
             }
+
             /// <summary>
             /// 图形文本扩展
             /// </summary>
@@ -529,6 +600,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 BlackgroundColorIndex = *(data + 11);
             }
         }
+
         /// <summary>
         /// 应用程序扩展
         /// </summary>
@@ -538,14 +610,17 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// 用来鉴别应用程序自身的标识(8个连续ASCII字符)
             /// </summary>
             public TmphSubArray<byte> Identifier { get; private set; }
+
             /// <summary>
             /// 应用程序定义的特殊标识码(3个连续ASCII字符)
             /// </summary>
             public TmphSubArray<byte> AuthenticationCode { get; private set; }
+
             /// <summary>
             /// 应用程序自定义数据块集合
             /// </summary>
             private TmphList<TmphSubArray<byte>> customDatas;
+
             /// <summary>
             /// 应用程序自定义数据块
             /// </summary>
@@ -553,6 +628,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             {
                 get { return TmphDecoder.BlocksToByte(customDatas); }
             }
+
             /// <summary>
             /// 应用程序扩展
             /// </summary>
@@ -566,6 +642,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 this.customDatas = customDatas;
             }
         }
+
         /// <summary>
         /// 数据类型
         /// </summary>
@@ -575,23 +652,28 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// 图像块
             /// </summary>
             Image,
+
             /// <summary>
             /// 图形控制扩展(需要89a版本)
             /// </summary>
             GraphicControl,
+
             /// <summary>
             /// 图形文本扩展(需要89a版本)
             /// </summary>
             PlainText,
+
             /// <summary>
             /// 注释扩展(需要89a版本)
             /// </summary>
             Comment,
+
             /// <summary>
             /// 应用程序扩展(需要89a版本)
             /// </summary>
             Application,
         }
+
         /// <summary>
         /// 数据块
         /// </summary>
@@ -601,26 +683,32 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// 数据类型
             /// </summary>
             public TmphDataType Type { get; private set; }
+
             /// <summary>
             /// 图像块
             /// </summary>
             public TmphImage Image { get; private set; }
+
             /// <summary>
             /// 图形控制扩展
             /// </summary>
             public TmphGraphicControl GraphicControl { get; private set; }
+
             /// <summary>
             /// 注释扩展
             /// </summary>
             public TmphSubArray<byte> Comment { get; private set; }
+
             /// <summary>
             /// 图形文本扩展
             /// </summary>
             public TmphPlainText PlainText { get; private set; }
+
             /// <summary>
             /// 应用程序扩展
             /// </summary>
             public TmphApplication Application { get; private set; }
+
             /// <summary>
             /// 数据块
             /// </summary>
@@ -630,6 +718,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 Type = TmphDataType.Image;
                 Image = TmphImage;
             }
+
             /// <summary>
             /// 数据块
             /// </summary>
@@ -639,6 +728,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 Type = TmphDataType.GraphicControl;
                 GraphicControl = TmphGraphicControl;
             }
+
             /// <summary>
             /// 数据块
             /// </summary>
@@ -648,6 +738,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 Type = TmphDataType.Comment;
                 Comment = comment;
             }
+
             /// <summary>
             /// 数据块
             /// </summary>
@@ -657,6 +748,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 Type = TmphDataType.PlainText;
                 PlainText = TmphPlainText;
             }
+
             /// <summary>
             /// 数据块
             /// </summary>
@@ -667,6 +759,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 Application = TmphApplication;
             }
         }
+
         /// <summary>
         /// GIF文件解码器
         /// </summary>
@@ -676,18 +769,22 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// GIF文件数据
             /// </summary>
             private byte[] data;
+
             /// <summary>
             /// GIF文件数据起始位置
             /// </summary>
             private byte* dataPoint;
+
             /// <summary>
             /// GIF文件数据当前解析位置
             /// </summary>
             private byte* currentData;
+
             /// <summary>
             /// GIF文件数据结束位置
             /// </summary>
             private byte* dataEnd;
+
             /// <summary>
             /// 是否文件结束
             /// </summary>
@@ -695,6 +792,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             {
                 get { return *currentData == 0x3b; }
             }
+
             /// <summary>
             /// GIF文件解码器
             /// </summary>
@@ -706,6 +804,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 this.currentData = currentData;
                 dataEnd = dataPoint + data.Length - 1;
             }
+
             /// <summary>
             /// 解码下一个数据块
             /// </summary>
@@ -719,16 +818,20 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     {
                         case 0xf9:
                             return decodeGraphicControl();
+
                         case 1:
                             return decodePlainText();
+
                         case 0xfe:
                             return decodeComment();
+
                         case 0xff:
                             return decodeApplication();
                     }
                 }
                 return null;
             }
+
             /// <summary>
             /// 解码图像块
             /// </summary>
@@ -751,6 +854,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 if ((TmphImage.lzwDatas = getBlockList()) == null) return null;
                 return new TmphDataBlock(TmphImage);
             }
+
             /// <summary>
             /// 解码图形控制扩展
             /// </summary>
@@ -763,6 +867,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 currentData += 5;
                 return new TmphDataBlock(TmphGraphicControl);
             }
+
             /// <summary>
             /// 解码图形文本扩展
             /// </summary>
@@ -775,6 +880,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 if ((TmphPlainText.text = getBlockList()) == null) return null;
                 return new TmphDataBlock(TmphPlainText);
             }
+
             /// <summary>
             /// 解码注释扩展
             /// </summary>
@@ -786,6 +892,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 if (comment.Array == null) return null;
                 return new TmphDataBlock(comment);
             }
+
             /// <summary>
             /// 解码应用程序扩展
             /// </summary>
@@ -799,6 +906,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 if (customDatas == null) return null;
                 return new TmphDataBlock(new TmphApplication(TmphSubArray<byte>.Unsafe(data, startIndex + 1, 8), TmphSubArray<byte>.Unsafe(data, startIndex + 9, 3), customDatas));
             }
+
             /// <summary>
             /// 填充数据块
             /// </summary>
@@ -815,6 +923,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 ++currentData;
                 return blocks;
             }
+
             /// <summary>
             /// 填充数据块集合
             /// </summary>
@@ -833,6 +942,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 ++currentData;
                 return datas;
             }
+
             /// <summary>
             /// 颜色列表数据填充
             /// </summary>
@@ -872,6 +982,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
                 return data;
             }
+
             /// <summary>
             /// 合并数据块集合
             /// </summary>
@@ -903,6 +1014,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 return null;
             }
         }
+
         /// <summary>
         /// GIF文件写入器
         /// </summary>
@@ -912,42 +1024,52 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             /// GIF文件标识与版本信息
             /// </summary>
             private const ulong fileVersion = 'G' + ('I' << 8) + ('F' << 16) + ('8' << 24) + ((ulong)'9' << 32) + ((ulong)'a' << 40);
+
             /// <summary>
             /// 文件流
             /// </summary>
             private FileStream fileStream;
+
             /// <summary>
             /// 文件缓冲区
             /// </summary>
             private byte[] fileBuffer;
+
             /// <summary>
             /// 当前图像色彩缓存
             /// </summary>
             private TmphColor[] colors;
+
             /// <summary>
             /// 当前图像色彩数量缓存
             /// </summary>
             private int[] colorCounts;
+
             /// <summary>
             /// 当前图像色彩数量
             /// </summary>
             private Dictionary<TmphColor, int> colorIndexs;
+
             /// <summary>
             /// 当前文件缓存位置
             /// </summary>
             private int bufferIndex;
+
             /// <summary>
             /// 素数宽度
             /// </summary>
             public short Width { get; private set; }
+
             /// <summary>
             /// 素数高度
             /// </summary>
             public short Height { get; private set; }
+
             /// <summary>
             /// 全局颜色数量
             /// </summary>
             private int globalColorCount;
+
             /// <summary>
             /// 文件缓冲区
             /// </summary>
@@ -956,6 +1078,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
 #else
             private static readonly TmphMemoryPool fileBuffers = TmphMemoryPoolProxy.GetPool(Laurent.Lee.CLB.Config.TmphAppSetting.StreamBufferSize + (256 * 3) + 8);
 #endif
+
             /// <summary>
             /// GIF文件写入器
             /// </summary>
@@ -1013,6 +1136,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 colorCounts = new int[colors.Length];
                 colorIndexs = TmphDictionary.Create<TmphColor, int>();
             }
+
             /// <summary>
             /// 释放文件
             /// </summary>
@@ -1041,6 +1165,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     }
                 }
             }
+
             /// <summary>
             /// 检测文件缓存
             /// </summary>
@@ -1066,6 +1191,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
                 return true;
             }
+
             /// <summary>
             /// 检测文件缓存
             /// </summary>
@@ -1077,6 +1203,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 bufferIndex += length;
                 return checkBuffer(bufferFixed);
             }
+
             /// <summary>
             /// 添加图片
             /// </summary>
@@ -1143,6 +1270,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
                 finally { bitmap.UnlockBits(bitmapData); }
             }
+
             /// <summary>
             /// 添加图片
             /// </summary>
@@ -1302,7 +1430,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                                 if (*(colorCountFixed + (*endSortIndex).Index) == minColorCount && --minColorCounts == 0) ++minColorCount;
                                 colorIndexs[*(colorFixed + (*endSortIndex).Index)] = maxColorCount++;
                                 int currentColorIndex = 0;
-                                for (int* lastColorCount = colorCountFixed + (*endSortIndex).Index; lastSortIndex != endSortIndex; )
+                                for (int* lastColorCount = colorCountFixed + (*endSortIndex).Index; lastSortIndex != endSortIndex;)
                                 {
                                     for (*lastColorCount = 0; *(colorCountFixed + (*++lastSortIndex).Index) >= minColorCount; colorIndexs[outputColor] = ++currentColorIndex)
                                     {
@@ -1370,6 +1498,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     return lzwEncode((byte*)colorCountFixed, colorIndexFixed, pixel);
                 }
             }
+
             /// <summary>
             /// LZW压缩编码
             /// </summary>
@@ -1394,7 +1523,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     int outputStart = outputSize, nextClearIndex = 1 << outputSize;
                     nextIndex += 2;
                     short prefixIndex = *inputFixed;
-                    for (byte* currentInput = inputFixed; ++currentInput != outputFixed; )
+                    for (byte* currentInput = inputFixed; ++currentInput != outputFixed;)
                     {
                         byte* currentTable = lzwEncodeTable.Byte + (prefixIndex << tableSize) + (*currentInput << 1);
                         if (*(short*)currentTable == clearIndex)
@@ -1460,6 +1589,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
                 finally { lzwEncodeTableBuffer.Push(ref lzwEncodeTable); }
             }
+
             /// <summary>
             /// 添加数据块
             /// </summary>
@@ -1498,6 +1628,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 *(bufferFixed + bufferIndex++) = 0;
                 return checkBuffer(bufferFixed);
             }
+
             /// <summary>
             /// 添加数据块
             /// </summary>
@@ -1533,6 +1664,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     return checkBuffer(bufferFixed);
                 }
             }
+
             /// <summary>
             /// 添加图形控制扩展
             /// </summary>
@@ -1553,6 +1685,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     return checkBuffer(bufferFixed, 8);
                 }
             }
+
             /// <summary>
             /// 添加图形文本扩展
             /// </summary>
@@ -1589,6 +1722,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     return checkBuffer(bufferFixed, 15) && addBlocks(bufferFixed, text);
                 }
             }
+
             /// <summary>
             /// 添加注释扩展
             /// </summary>
@@ -1604,6 +1738,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     fixed (byte* commentFixed = comment) return addBlocks(bufferFixed, commentFixed, commentFixed + comment.Length);
                 }
             }
+
             /// <summary>
             /// 添加注释扩展
             /// </summary>
@@ -1618,6 +1753,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                     return checkBuffer(bufferFixed, 2) && addBlocks(bufferFixed, comment);
                 }
             }
+
             /// <summary>
             /// 添加应用程序扩展
             /// </summary>
@@ -1648,42 +1784,52 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
             }
         }
+
         /// <summary>
         /// 版本号
         /// </summary>
         public TmphSubArray<byte> Version { get; private set; }
+
         /// <summary>
         /// 素数宽度
         /// </summary>
         public int Width { get; private set; }
+
         /// <summary>
         /// 素数高度
         /// </summary>
         public int Height { get; private set; }
+
         /// <summary>
         /// 颜色深度
         /// </summary>
         private byte colorResoluTion;
+
         /// <summary>
         /// 全局颜色列表是否分类排列
         /// </summary>
         private byte sortFlag;
+
         /// <summary>
         /// 全局颜色列表
         /// </summary>
         public TmphColor[] GlobalColors { get; private set; }
+
         /// <summary>
         /// 背景颜色在全局颜色列表中的索引，如果没有全局颜色列表，该值没有意义
         /// </summary>
         private byte backgroundColorIndex;
+
         /// <summary>
         /// 像素宽高比
         /// </summary>
         private byte pixelAspectRadio;
+
         /// <summary>
         /// 数据块集合
         /// </summary>
         private TmphList<TmphDataBlock> blocks;
+
         /// <summary>
         /// 数据块集合
         /// </summary>
@@ -1691,10 +1837,12 @@ namespace Laurent.Lee.CLB.Drawing.GIF
         {
             get { return blocks.getArray(); }
         }
+
         /// <summary>
         /// GIF文件是否解析成功
         /// </summary>
         public bool IsCompleted { get; private set; }
+
         /// <summary>
         /// GIF文件
         /// </summary>
@@ -1731,6 +1879,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 }
             }
         }
+
         /// <summary>
         /// GIF文件
         /// </summary>
@@ -1745,6 +1894,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             }
             return null;
         }
+
         /// <summary>
         /// GIF文件
         /// </summary>

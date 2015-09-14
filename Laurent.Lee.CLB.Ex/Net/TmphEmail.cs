@@ -1,10 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Net.Mail;
-using System.Net;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.ComponentModel;
-using Laurent.Lee.CLB.Threading;
+using System.Net;
+using System.Net.Mail;
 
 namespace Laurent.Lee.CLB.Net
 {
@@ -27,15 +46,18 @@ namespace Laurent.Lee.CLB.Net
             /// 发件SMTP,如"smtp.163.com"
             /// </summary>
             public string Server;
+
             /// <summary>
             /// SMTP服务端口
             /// </summary>
             public int Port;
+
             /// <summary>
             /// 是否SSL
             /// </summary>
             public bool IsSsl;
         }
+
         /// <summary>
         /// 发送邮件信息
         /// </summary>
@@ -45,35 +67,43 @@ namespace Laurent.Lee.CLB.Net
             /// 收件人邮箱
             /// </summary>
             public string SendTo;
+
             /// <summary>
             /// 邮件主题
             /// </summary>
             public string Subject;
+
             /// <summary>
             /// 邮件内容
             /// </summary>
             public string Body;
+
             /// <summary>
             /// 邮件内容是否HTML代码
             /// </summary>
             public bool IsHtml;
+
             /// <summary>
             /// 附件文件名集合
             /// </summary>
             public string[] Attachments;
         }
+
         /// <summary>
         /// 发件人邮箱
         /// </summary>
         public string From;
+
         /// <summary>
         /// 发件人密码
         /// </summary>
         public string Password;
+
         /// <summary>
         /// SMTP信息
         /// </summary>
         public TmphSmtp Smtp;
+
         /// <summary>
         /// 简单检测邮件信息
         /// </summary>
@@ -87,6 +117,7 @@ namespace Laurent.Lee.CLB.Net
                 && Password.Length != 0 && Smtp.Server.Length != 0
                 && content.SendTo.IndexOf('@') > 0 && From.IndexOf('@') > 0;
         }
+
         /// <summary>
         /// 获取STMP客户端
         /// </summary>
@@ -106,13 +137,17 @@ namespace Laurent.Lee.CLB.Net
             //send.Headers.Add("ReturnReceipt", "1");//针对 LOTUS DOMINO SERVER，插入回执头
             //send.Priority = MailPriority.Normal;//优先级
             message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(content.Body, null, "text/plain"));//普通文本邮件内容，如果对方的收件客户端不支持HTML，这是必需的
+
             #region 嵌入图片资源
+
             //AlternateView htmlBody = AlternateView.CreateAlternateViewFromString(@"<img src=""cid:weblogo"">", null, "text/html");
             //LinkedResource lrImage = new LinkedResource(@"d:\logo.gif", "TmphImage/gif");
             //lrImage.ContentId = "weblogo";
             //htmlBody.LinkedResources.Add(lrImage);
             //send.AlternateViews.Add(htmlBody);
-            #endregion
+
+            #endregion 嵌入图片资源
+
             if (content.Attachments != null)
             {
                 foreach (string fileName in content.Attachments) message.Attachments.Add(new Attachment(fileName));
@@ -124,6 +159,7 @@ namespace Laurent.Lee.CLB.Net
             smtpClient.Credentials = new NetworkCredential(From, Password);
             return smtpClient;
         }
+
         /// <summary>
         /// 发送邮件
         /// </summary>
@@ -149,6 +185,7 @@ namespace Laurent.Lee.CLB.Net
             }
             return isSend;
         }
+
         /// <summary>
         /// 电子邮件发送器
         /// </summary>
@@ -158,14 +195,17 @@ namespace Laurent.Lee.CLB.Net
             /// 邮件信息
             /// </summary>
             private MailMessage message;
+
             /// <summary>
             /// STMP客户端
             /// </summary>
             private SmtpClient smtpClient;
+
             /// <summary>
             /// 邮件发送回调
             /// </summary>
             public SendCompletedEventHandler OnSend;
+
             /// <summary>
             /// 电子邮件发送器
             /// </summary>
@@ -173,6 +213,7 @@ namespace Laurent.Lee.CLB.Net
             {
                 OnSend = send;
             }
+
             /// <summary>
             /// 邮件发送回调
             /// </summary>
@@ -191,6 +232,7 @@ namespace Laurent.Lee.CLB.Net
                     push(this, e.Error == null);
                 }
             }
+
             /// <summary>
             /// 获取电子邮件发送器
             /// </summary>
@@ -208,6 +250,7 @@ namespace Laurent.Lee.CLB.Net
                 return sender;
             }
         }
+
         /// <summary>
         /// 发送邮件
         /// </summary>

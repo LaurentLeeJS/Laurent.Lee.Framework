@@ -1,10 +1,32 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using Laurent.Lee.CLB.Threading;
+using System;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Drawing.Imaging;
 using System.Threading;
 using System.Timers;
-using System.Drawing.Imaging;
-using Laurent.Lee.CLB.Threading;
+using System.Windows.Forms;
 
 namespace Laurent.Lee.CLB.Drawing.GIF
 {
@@ -17,54 +39,67 @@ namespace Laurent.Lee.CLB.Drawing.GIF
         /// GIF文件
         /// </summary>
         private TmphFile.TmphWriter gif;
+
         /// <summary>
         /// 截屏设备
         /// </summary>
         private Screen screen;
+
         /// <summary>
         /// X方向偏移量
         /// </summary>
         private int leftOffset;
+
         /// <summary>
         /// Y方向偏移量
         /// </summary>
         private int topOffset;
+
         /// <summary>
         /// 截屏定时器
         /// </summary>
         private System.Timers.Timer timer;
+
         /// <summary>
         /// 截屏定时毫秒数
         /// </summary>
         private double interval;
+
         /// <summary>
         /// 未处理的截屏图片集合
         /// </summary>
         private TmphCollection<Bitmap> bitmaps;
+
         /// <summary>
         /// 截屏处理访问锁
         /// </summary>
         private object bitmapLock = new object();
+
         /// <summary>
         /// 是否正在抓屏
         /// </summary>
         private int isScreen;
+
         /// <summary>
         /// 跳屏数量
         /// </summary>
         private int keepScreenCount;
+
         /// <summary>
         /// 最大色彩深度
         /// </summary>
         private byte maxPixel;
+
         /// <summary>
         /// 释放资源是否等待GIF文件处理结束
         /// </summary>
         private bool isWaitFinally;
+
         /// <summary>
         /// GIF文件处理是否结束
         /// </summary>
         private bool isFinally;
+
         /// <summary>
         /// 截屏到GIF文件
         /// </summary>
@@ -122,6 +157,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             timer.Start();
             TmphThreadPool.TinyPool.Start(write, null, null);
         }
+
         /// <summary>
         /// 释放资源
         /// </summary>
@@ -144,6 +180,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
                 finally { Monitor.Exit(bitmapLock); }
             }
         }
+
         /// <summary>
         /// 停止截屏
         /// </summary>
@@ -157,6 +194,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             timer = null;
             screen = null;
         }
+
         /// <summary>
         /// 定时截屏处理
         /// </summary>
@@ -219,6 +257,7 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             }
             else Interlocked.Increment(ref keepScreenCount);
         }
+
         /// <summary>
         /// GIF文件处理线程
         /// </summary>
@@ -421,5 +460,4 @@ namespace Laurent.Lee.CLB.Drawing.GIF
             }
         }
     }
-
 }

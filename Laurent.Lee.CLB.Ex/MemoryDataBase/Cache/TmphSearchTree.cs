@@ -1,7 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Code;
 using Laurent.Lee.CLB.MemoryDataBase.Cache;
+using System;
+using System.Collections.Generic;
 
 namespace Laurent.Lee.CLB.MemoryDatabase.Cache
 {
@@ -20,10 +42,12 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         /// 数据集合
         /// </summary>
         private Laurent.Lee.CLB.TmphSearchTree<TKeyType, TmphCacheValue> tree = new Laurent.Lee.CLB.TmphSearchTree<TKeyType, TmphCacheValue>();
+
         /// <summary>
         /// 对象数量
         /// </summary>
         public int Count { get { return tree.Count; } }
+
         /// <summary>
         /// 枚举数据集合
         /// </summary>
@@ -34,6 +58,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
                 foreach (TmphCacheValue value in tree.GetArray()) yield return value.Value;
             }
         }
+
         /// <summary>
         /// 获取数组
         /// </summary>
@@ -42,6 +67,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return new TmphSubArray<TValueType>(GetArray());
         }
+
         /// <summary>
         /// 获取数组
         /// </summary>
@@ -50,6 +76,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return tree.GetArray(TmphCacheValue.GetValue);
         }
+
         /// <summary>
         /// 是否存在关键字
         /// </summary>
@@ -59,6 +86,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return tree.ContainsKey(key);
         }
+
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -69,6 +97,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             TmphCacheValue value;
             return tree.TryGetValue(key, out value) ? value.Value : null;
         }
+
         /// <summary>
         /// 加载日志添加对象
         /// </summary>
@@ -79,6 +108,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             tree[key] = new TmphCacheValue { Value = value, LogSize = logSize };
         }
+
         /// <summary>
         /// 加载日志修改对象
         /// </summary>
@@ -93,6 +123,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
                 Laurent.Lee.CLB.Emit.TmphMemberCopyer<TModelType>.Copy(TCacheValue.Value, value, memberMap);
             }
         }
+
         /// <summary>
         /// 加载日志删除对象
         /// </summary>
@@ -103,6 +134,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             TmphCacheValue cacheValue;
             return tree.Remove(key, out cacheValue) ? cacheValue.LogSize : 0;
         }
+
         /// <summary>
         /// 日志数据加载完成
         /// </summary>
@@ -112,6 +144,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             if (!isLoaded) Dispose();
             onLoaded();
         }
+
         /// <summary>
         /// 添加对象
         /// </summary>
@@ -126,6 +159,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             tree[key] = new TmphCacheValue { Value = value, LogSize = logSize };
             return value;
         }
+
         /// <summary>
         /// 删除对象
         /// </summary>
@@ -144,6 +178,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             return null;
         }
     }
+
     /// <summary>
     /// 搜索树缓存
     /// </summary>

@@ -1,6 +1,27 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Threading;
-using Laurent.Lee.CLB.Code.CSharp;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
 {
@@ -17,10 +38,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
         /// 排序树节点数量集合
         /// </summary>
         private int* counts;
+
         /// <summary>
         /// 排序树容器数量
         /// </summary>
         private int size;
+
         /// <summary>
         /// 自增ID整表数组缓存
         /// </summary>
@@ -46,6 +69,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
             counts = null;
             size = 0;
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -88,6 +112,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
                 TmphUnmanaged.Free(newCounts);
             }
         }
+
         /// <summary>
         /// 增加数据
         /// </summary>
@@ -139,6 +164,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
             ++Count;
             callOnInserted(newValue);
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -157,6 +183,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
             values[identity] = null;
             callOnDeleted(TCacheValue);
         }
+
         /// <summary>
         /// 获取记录起始位置
         /// </summary>
@@ -178,6 +205,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
             }
             return index + 1;
         }
+
         /// <summary>
         /// 获取分页记录集合
         /// </summary>

@@ -1,5 +1,26 @@
-﻿using System;
-using Laurent.Lee.CLB.Code.CSharp;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -22,18 +43,22 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         /// 整表缓存
         /// </summary>
         protected Events.TmphCache<TValueType, TModelType> cache;
+
         /// <summary>
         /// 分组关键字获取器
         /// </summary>
         protected Func<TValueType, TmphGroupKeyType> getGroupKey;
+
         /// <summary>
         /// 字典关键字获取器
         /// </summary>
         protected Func<TValueType, TKeyType> getKey;
+
         /// <summary>
         /// 分组数据
         /// </summary>
         protected Dictionary<TmphGroupKeyType, Dictionary<TKeyType, TValueType>> groups;
+
         /// <summary>
         /// 分组字典缓存
         /// </summary>
@@ -58,6 +83,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 resetLock();
             }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -70,6 +96,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(cache.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -78,6 +105,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             groups = TmphDictionary<TmphGroupKeyType>.Create<Dictionary<TKeyType, TValueType>>();
             foreach (TValueType value in cache.Values) onInserted(value);
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -86,6 +114,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             onInserted(value, getGroupKey(value));
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -96,6 +125,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             if (!groups.TryGetValue(key, out values)) groups.Add(key, values = TmphDictionary<TKeyType>.Create<TValueType>());
             values.Add(getKey(value), value);
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -123,6 +153,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 onDeleted(oldValue, oldGroupKey);
             }
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -137,6 +168,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             else TmphLog.Error.Add(typeof(TValueType).FullName + " 缓存同步错误", false, true);
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -145,6 +177,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             onDeleted(value, getGroupKey(value));
         }
+
         /// <summary>
         /// 获取关键字集合
         /// </summary>

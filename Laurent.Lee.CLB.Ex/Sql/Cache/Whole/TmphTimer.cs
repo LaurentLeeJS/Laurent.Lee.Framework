@@ -1,6 +1,28 @@
-﻿using System;
-using System.Threading;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Threading;
+using System;
+using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole
 {
@@ -17,30 +39,37 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         /// 整表缓存
         /// </summary>
         protected Events.TmphCache<TValueType, TModelType> cache;
+
         /// <summary>
         /// 时间获取器
         /// </summary>
         protected Func<TValueType, DateTime> getTime;
+
         /// <summary>
         /// 事件委托
         /// </summary>
         private Action runTimeHandle;
+
         /// <summary>
         /// 事件委托
         /// </summary>
         private Action run;
+
         /// <summary>
         /// 最小事件时间
         /// </summary>
         private DateTime minTime;
+
         /// <summary>
         /// 事件时间集合
         /// </summary>
         private TmphSubArray<DateTime> times;
+
         /// <summary>
         /// 事件时间访问锁
         /// </summary>
         private int timeLock;
+
         /// <summary>
         /// 缓存时间事件
         /// </summary>
@@ -65,6 +94,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 resetLock();
             }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -77,6 +107,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(cache.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -90,6 +121,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             Append(minTime);
         }
+
         /// <summary>
         /// 添加事件时间
         /// </summary>
@@ -113,6 +145,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 else timeLock = 0;
             }
         }
+
         /// <summary>
         /// 时间事件
         /// </summary>
@@ -141,6 +174,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             timeLock = 0;
             run();
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -149,6 +183,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             Append(getTime(value));
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>

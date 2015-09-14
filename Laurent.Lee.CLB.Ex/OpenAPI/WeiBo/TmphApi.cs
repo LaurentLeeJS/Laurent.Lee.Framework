@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.OpenAPI.WeiBo
 {
@@ -11,10 +31,12 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
         /// 应用配置
         /// </summary>
         private TmphConfig config;
+
         /// <summary>
         /// 访问令牌
         /// </summary>
         private TmphToken token;
+
         /// <summary>
         /// 访问令牌+用户身份的标识
         /// </summary>
@@ -22,6 +44,7 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
         {
             get { return new TmphTokenUid { Token = token.access_token, Uid = token.uid }; }
         }
+
         /// <summary>
         /// 当前授权用户的UID
         /// </summary>
@@ -29,10 +52,12 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
         {
             get { return token.uid; }
         }
+
         /// <summary>
         /// 请求字符串
         /// </summary>
         private string query;
+
         /// <summary>
         /// API调用
         /// </summary>
@@ -44,6 +69,7 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
             this.token = token;
             query = "access_token=" + token.access_token;
         }
+
         /// <summary>
         /// 用户信息
         /// </summary>
@@ -52,6 +78,7 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
         {
             return TmphConfig.Request.RequestJson<TmphUser>(@"https://api.weibo.com/2/users/show.json?" + query + "&uid=" + token.uid);
         }
+
         /// <summary>
         /// 表单提交
         /// </summary>
@@ -67,6 +94,7 @@ namespace Laurent.Lee.CLB.OpenAPI.WeiBo
             form.access_token = token.access_token;
             return TmphConfig.Request.RequestJson<TJsonType, TFormType>(url, form);
         }
+
         /// <summary>
         /// 发布一条新微博
         /// </summary>

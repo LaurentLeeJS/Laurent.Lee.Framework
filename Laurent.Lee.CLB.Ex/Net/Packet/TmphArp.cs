@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.Net.Packet
 {
@@ -15,10 +35,12 @@ namespace Laurent.Lee.CLB.Net.Packet
         /// ARP数据包长度
         /// </summary>
         public const int PacketSize = 28;
+
         /// <summary>
         /// 数据
         /// </summary>
         private TmphSubArray<byte> data;
+
         /// <summary>
         /// 数据包是否有效
         /// </summary>
@@ -26,6 +48,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array != null; }
         }
+
         /// <summary>
         /// 硬件类型,0x0001表示10Mb以太网
         /// </summary>
@@ -33,6 +56,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex] << 8) + data.Array[data.StartIndex + 1]; }
         }
+
         /// <summary>
         /// 协议类型,为0x0800表示IP地址
         /// </summary>
@@ -40,6 +64,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 2] << 8) + data.Array[data.StartIndex + 3]; }
         }
+
         /// <summary>
         /// 硬件地址长度(即MAC地址长度),以太网为0x06
         /// </summary>
@@ -47,6 +72,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex + 4]; }
         }
+
         /// <summary>
         /// 协议地址长度(即IP地址长度),以太网为0x04
         /// </summary>
@@ -54,6 +80,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// ARP请求包的OP值为1，ARP应答包的OP值为2，RARP请求包的OP值为3，RARP应答包的OP值为4
         /// </summary>
@@ -61,6 +88,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 6] << 8) + data.Array[data.StartIndex + 7]; }
         }
+
         /// <summary>
         /// 发送者以太网地址
         /// </summary>
@@ -68,6 +96,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + 8, 6); }
         }
+
         /// <summary>
         /// 发送者的IP地址
         /// </summary>
@@ -75,6 +104,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return Laurent.Lee.CLB.Unsafe.TmphMemory.GetUInt(data.Array, data.StartIndex + 14); }
         }
+
         /// <summary>
         /// 目的以太网地址
         /// </summary>
@@ -82,6 +112,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + 18, 6); }
         }
+
         /// <summary>
         /// 目的IP(查询MAC地址的IP)
         /// </summary>
@@ -89,6 +120,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return Laurent.Lee.CLB.Unsafe.TmphMemory.GetUInt(data.Array, data.StartIndex + 24); }
         }
+
         /// <summary>
         /// ARP数据包
         /// </summary>

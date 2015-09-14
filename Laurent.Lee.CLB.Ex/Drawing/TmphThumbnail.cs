@@ -1,7 +1,29 @@
-﻿using System;
-using System.Drawing.Imaging;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 
 namespace Laurent.Lee.CLB.Drawing
@@ -15,14 +37,17 @@ namespace Laurent.Lee.CLB.Drawing
         /// 高质量图像编码参数
         /// </summary>
         private static readonly EncoderParameters qualityEncoder;
+
         /// <summary>
         /// 图像编码解码器集合
         /// </summary>
         private static readonly CLB.TmphStateSearcher.TmphByteArray<ImageCodecInfo> imageCodecs;
+
         /// <summary>
         /// JPEG图像编码解码器
         /// </summary>
         private static readonly ImageCodecInfo jpegImageCodecInfo;
+
         /// <summary>
         /// 获取图像编码解码器
         /// </summary>
@@ -37,6 +62,7 @@ namespace Laurent.Lee.CLB.Drawing
             }
             return null;
         }
+
         /// <summary>
         /// 图像缩略切剪
         /// </summary>
@@ -50,6 +76,7 @@ namespace Laurent.Lee.CLB.Drawing
             if (data == null) return default(TmphSubArray<byte>);
             return Cut(TmphSubArray<byte>.Unsafe(data, 0, data.Length), width, height, type, memoryPool, seek);
         }
+
         /// <summary>
         /// 图像缩略切剪
         /// </summary>
@@ -77,6 +104,7 @@ namespace Laurent.Lee.CLB.Drawing
             }
             return default(TmphSubArray<byte>);
         }
+
         /// <summary>
         /// 缩略图创建器
         /// </summary>
@@ -86,30 +114,37 @@ namespace Laurent.Lee.CLB.Drawing
             /// 原始图片
             /// </summary>
             private Image TmphImage;
+
             /// <summary>
             /// 原始图片宽度
             /// </summary>
             private int width;
+
             /// <summary>
             /// 原始图片高度
             /// </summary>
             private int height;
+
             /// <summary>
             /// 原始图片裁剪横坐标起始位置
             /// </summary>
             private int left;
+
             /// <summary>
             /// 原始图片裁剪纵坐标起始位置
             /// </summary>
             private int top;
+
             /// <summary>
             /// 原始图片裁剪横坐标结束位置
             /// </summary>
             private int right;
+
             /// <summary>
             /// 原始图片裁剪纵坐标结束位置
             /// </summary>
             private int bottom;
+
             /// <summary>
             /// 根据数据流创建原始图片
             /// </summary>
@@ -122,6 +157,7 @@ namespace Laurent.Lee.CLB.Drawing
                 height = TmphImage.Height;
                 return TmphImage;
             }
+
             /// <summary>
             /// 计算缩略图尺寸位置
             /// </summary>
@@ -181,6 +217,7 @@ namespace Laurent.Lee.CLB.Drawing
                 }
                 return false;
             }
+
             /// <summary>
             /// 获取缩略图
             /// </summary>
@@ -230,6 +267,7 @@ namespace Laurent.Lee.CLB.Drawing
                 }
                 return default(TmphSubArray<byte>);
             }
+
             /// <summary>
             /// 获取缩略图
             /// </summary>
@@ -250,6 +288,7 @@ namespace Laurent.Lee.CLB.Drawing
                 }
             }
         }
+
         unsafe static TmphThumbnail()
         {
             (qualityEncoder = new EncoderParameters(1)).Param[0] = new EncoderParameter(Encoder.Quality, 100L);

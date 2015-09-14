@@ -1,8 +1,30 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using Laurent.Lee.CLB.Threading;
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Laurent.Lee.CLB.Threading;
 
 namespace Laurent.Lee.CLB.Net
 
@@ -16,10 +38,12 @@ namespace Laurent.Lee.CLB.Net
         /// 默认获取的数据包的字节数(默认为以太网)
         /// </summary>
         private const int defaultBufferSize = 1500;
+
         /// <summary>
         /// 输入参数
         /// </summary>
         private static readonly byte[] optionIn = new byte[4];
+
         /// <summary>
         /// 缓冲区
         /// </summary>
@@ -28,42 +52,52 @@ namespace Laurent.Lee.CLB.Net
 #else
         private static readonly TmphMemoryPool buffers = TmphMemoryPoolProxy.GetPool(Laurent.Lee.CLB.Config.TmphPub.Default.RawSocketBufferSize);
 #endif
+
         /// <summary>
         /// 缓冲区访问锁
         /// </summary>
         private static int bufferLock;
+
         /// <summary>
         /// 数据包处理委托
         /// </summary>
         private Action<TmphSubArray<byte>> getPacket;
+
         /// <summary>
         /// 数据包字节数
         /// </summary>
         private int packetSize;
+
         /// <summary>
         /// 缓冲区最大可用索引
         /// </summary>
         private int maxBufferIndex;
+
         /// <summary>
         /// 当前接收数据缓冲区
         /// </summary>
         private byte[] buffer;
+
         /// <summary>
         /// 缓冲区起始位置
         /// </summary>
         private int bufferIndex;
+
         /// <summary>
         /// 接收数据序号
         /// </summary>
         private int receiveIdentity;
+
         /// <summary>
         /// 数据包处理序号
         /// </summary>
         private int packetIdentity;
+
         /// <summary>
         /// 异步套接字操作
         /// </summary>
         private SocketAsyncEventArgs async;
+
         /// <summary>
         /// 初始化原始套接字监听
         /// </summary>
@@ -104,6 +138,7 @@ namespace Laurent.Lee.CLB.Net
             }
             Dispose();
         }
+
         /// <summary>
         /// 开始监听
         /// </summary>
@@ -116,6 +151,7 @@ namespace Laurent.Lee.CLB.Net
             async.Completed += onReceive;
             receive();
         }
+
         /// <summary>
         /// 继续接收数据
         /// </summary>
@@ -144,6 +180,7 @@ namespace Laurent.Lee.CLB.Net
                 Dispose();
             }
         }
+
         /// <summary>
         /// 数据接收完成后的回调委托
         /// </summary>
@@ -199,6 +236,7 @@ namespace Laurent.Lee.CLB.Net
             }
             if (isSuccess == 0) Dispose();
         }
+
         /// <summary>
         /// 释放缓冲区
         /// </summary>
@@ -218,6 +256,7 @@ namespace Laurent.Lee.CLB.Net
                 }
             }
         }
+
         /// <summary>
         /// 关闭套接字
         /// </summary>

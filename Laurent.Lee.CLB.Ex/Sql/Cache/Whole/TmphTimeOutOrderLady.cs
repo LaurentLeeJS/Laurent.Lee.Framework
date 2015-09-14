@@ -1,6 +1,27 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
-using Laurent.Lee.CLB.Code.CSharp;
 using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole
@@ -18,10 +39,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         /// 整表缓存
         /// </summary>
         protected Events.TmphCache<TValueType, TModelType> cache;
+
         /// <summary>
         /// 超时秒数
         /// </summary>
         protected double timeOutSeconds;
+
         /// <summary>
         /// 最小有效时间
         /// </summary>
@@ -32,26 +55,32 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 return TmphDate.NowSecond.AddSeconds(timeOutSeconds);
             }
         }
+
         /// <summary>
         /// 排序数据最小时间
         /// </summary>
         protected DateTime minTime;
+
         /// <summary>
         /// 时间获取器
         /// </summary>
         protected Func<TValueType, DateTime> getTime;
+
         /// <summary>
         /// 数据集合
         /// </summary>
         protected HashSet<TValueType> values;
+
         /// <summary>
         /// 数据数组
         /// </summary>
         protected TValueType[] array;
+
         /// <summary>
         /// 数据数组是否排序
         /// </summary>
         protected bool isSort;
+
         /// <summary>
         /// 超时缓存
         /// </summary>
@@ -77,6 +106,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 resetLock();
             }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -89,6 +119,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(cache.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -103,6 +134,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             values = newValues;
             array = null;
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -115,6 +147,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 array = null;
             }
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -124,6 +157,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             onInserted(value);
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -132,6 +166,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             if (values.Remove(value)) array = null;
         }
+
         /// <summary>
         /// 删除过期数据
         /// </summary>
@@ -149,6 +184,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 }
             }
         }
+
         /// <summary>
         /// 获取数据数量
         /// </summary>
@@ -157,6 +193,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetArray().Length;
         }
+
         /// <summary>
         /// 获取数据集合
         /// </summary>
@@ -181,6 +218,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             return values;
         }
+
         /// <summary>
         /// 获取排序后的数据集合
         /// </summary>

@@ -1,6 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Threading;
+using System.Collections.Generic;
 
 namespace Laurent.Lee.CLB.Search
 {
@@ -18,10 +39,12 @@ namespace Laurent.Lee.CLB.Search
             /// 结束字符
             /// </summary>
             private char* end;
+
             /// <summary>
             /// 当前节点
             /// </summary>
             public int Node;
+
             /// <summary>
             /// 创建树
             /// </summary>
@@ -35,6 +58,7 @@ namespace Laurent.Lee.CLB.Search
                 }
                 NodePool[Node].Value = keys;
             }
+
             /// <summary>
             /// 创建树
             /// </summary>
@@ -45,10 +69,12 @@ namespace Laurent.Lee.CLB.Search
                 if (++start != end) build(start);
             }
         }
+
         /// <summary>
         /// 字符串trie图
         /// </summary>
         public TmphTrieGraph() { }
+
         /// <summary>
         /// 字符串trie图
         /// </summary>
@@ -59,6 +85,7 @@ namespace Laurent.Lee.CLB.Search
             BuildTree(words);
             BuildGraph(threadCount);
         }
+
         /// <summary>
         /// 创建trie树
         /// </summary>
@@ -83,6 +110,7 @@ namespace Laurent.Lee.CLB.Search
                 finally { nodeLock = 0; }
             }
         }
+
         /// <summary>
         /// 是否存在最小匹配
         /// </summary>
@@ -96,6 +124,7 @@ namespace Laurent.Lee.CLB.Search
             }
             return false;
         }
+
         /// <summary>
         /// 是否存在最小匹配
         /// </summary>
@@ -113,6 +142,7 @@ namespace Laurent.Lee.CLB.Search
             }
             return false;
         }
+
         /// <summary>
         /// 是否存在最小匹配
         /// </summary>
@@ -142,6 +172,7 @@ namespace Laurent.Lee.CLB.Search
             }
             return false;
         }
+
         /// <summary>
         /// 从左到右最大匹配
         /// </summary>
@@ -194,6 +225,7 @@ namespace Laurent.Lee.CLB.Search
                 }
             }
         }
+
         /// <summary>
         /// 从左到右最大匹配
         /// </summary>

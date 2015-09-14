@@ -1,8 +1,32 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Diagnostics;
 using System.IO;
+
 #if MONO
 #else
+
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Reflection;
@@ -24,10 +48,11 @@ namespace Laurent.Lee.CLB.Diagnostics
     {
 #if MONO
 #else
+
         /// <summary>
         ///     进程类型所在程序集
         /// </summary>
-        private static readonly Assembly assembly = typeof (Process).Assembly;
+        private static readonly Assembly assembly = typeof(Process).Assembly;
 
         /// <summary>
         ///     Microsoft.Win32.SafeHandles.SafeProcessHandle类信息
@@ -52,7 +77,7 @@ namespace Laurent.Lee.CLB.Diagnostics
         ///     句柄是否有效
         /// </summary>
         private static readonly Func<object, bool> handleIsInvalid =
-            Emit.TmphPub.GetProperty<bool>(typeof (SafeHandle).Assembly,
+            Emit.TmphPub.GetProperty<bool>(typeof(SafeHandle).Assembly,
                 "Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid", "IsInvalid", false);
 
         /// <summary>
@@ -102,14 +127,14 @@ namespace Laurent.Lee.CLB.Diagnostics
         ///     设置进程句柄
         /// </summary>
         private static readonly Action<Process, object> setProcessHandle =
-            Emit.TmphPub.GetAction<Process, object>(typeof (Process).GetMethod("SetProcessHandle",
+            Emit.TmphPub.GetAction<Process, object>(typeof(Process).GetMethod("SetProcessHandle",
                 BindingFlags.Instance | BindingFlags.NonPublic));
 
         /// <summary>
         ///     设置进程ID
         /// </summary>
         private static readonly Action<Process, int> setProcessId =
-            Emit.TmphPub.GetAction<Process, int>(typeof (Process).GetMethod("SetProcessId",
+            Emit.TmphPub.GetAction<Process, int>(typeof(Process).GetMethod("SetProcessId",
                 BindingFlags.Instance | BindingFlags.NonPublic));
 
         /// <summary>
@@ -372,7 +397,7 @@ namespace Laurent.Lee.CLB.Diagnostics
             /// </summary>
             public TmphStartupInfo()
             {
-                Size = Marshal.SizeOf(typeof (TmphStartupInfo));
+                Size = Marshal.SizeOf(typeof(TmphStartupInfo));
             }
 
             /// <summary>
@@ -428,7 +453,7 @@ namespace Laurent.Lee.CLB.Diagnostics
         /// <summary>
         ///     进程内存统计信息PROCESS_MEMORY_COUNTERS
         /// </summary>
-        [StructLayout(LayoutKind.Sequential, Size = 2*sizeof (uint) + 8*sizeof (ulong))]
+        [StructLayout(LayoutKind.Sequential, Size = 2 * sizeof(uint) + 8 * sizeof(ulong))]
         public struct TmphMemoryCounters
         {
             /// <summary>
@@ -445,10 +470,10 @@ namespace Laurent.Lee.CLB.Diagnostics
             public ulong QuotaNonPagedPoolUsage; // The current nonpaged pool usage, in bytes (SIZE_T).
 
             public ulong PagefileUsage;
-                // The Commit Charge value in bytes for this TmphProcess (SIZE_T). Commit Charge is the total amount of memory that the memory manager has committed for a running TmphProcess.
+            // The Commit Charge value in bytes for this TmphProcess (SIZE_T). Commit Charge is the total amount of memory that the memory manager has committed for a running TmphProcess.
 
             public ulong PeakPagefileUsage;
-                // The peak value in bytes of the Commit Charge during the lifetime of this TmphProcess (SIZE_T).
+            // The peak value in bytes of the Commit Charge during the lifetime of this TmphProcess (SIZE_T).
         }
 
         /// <summary>
@@ -744,7 +769,7 @@ namespace Laurent.Lee.CLB.Diagnostics
         public static unsafe TmphMemoryCounters GetProcessMemoryInfo(Process TmphProcess = null)
         {
             TmphMemoryCounters TmphMemoryCounters;
-            TmphMemoryCounters.Size = (uint) sizeof (TmphMemoryCounters);
+            TmphMemoryCounters.Size = (uint)sizeof(TmphMemoryCounters);
             if (TmphProcess == null)
             {
                 using (var currentProcess = GetCurrentProcess())
@@ -762,6 +787,7 @@ namespace Laurent.Lee.CLB.Diagnostics
             }
             throw new Win32Exception(Marshal.GetLastWin32Error());
         }
+
 #endif
 
         /// <summary>

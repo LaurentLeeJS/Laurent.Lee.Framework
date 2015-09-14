@@ -1,4 +1,26 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole
@@ -14,6 +36,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         /// 分组数据
         /// </summary>
         public TmphSubArray<TValueType> Array;
+
         /// <summary>
         /// 当前数据集合(不排序)
         /// </summary>
@@ -25,6 +48,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 return TmphSubArray<TValueType>.Unsafe(Array.Array, 0, count == 0 ? Array.StartIndex : count);
             }
         }
+
         /// <summary>
         /// 数据数量
         /// </summary>
@@ -32,6 +56,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             get { return Array.StartIndex + Array.Count; }
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -42,6 +67,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             array.Add(value);
             Array.UnsafeSet(array.Array, array.Count, 0);
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -52,6 +78,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             if (index == -1) TmphLog.Error.Add(typeof(TValueType).FullName + " 缓存同步错误", true, true);
             else Array.UnsafeSet(count, 0);
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -69,6 +96,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             else Array.RemoveAt(index);
         }
+
         /// <summary>
         /// 获取排序数组
         /// </summary>
@@ -94,6 +122,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             finally { Monitor.Exit(sqlLock); }
             return null;
         }
+
         /// <summary>
         /// 获取排序数组
         /// </summary>
@@ -110,6 +139,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(sqlLock); }
         }
+
         /// <summary>
         /// 获取分页数据集合
         /// </summary>
@@ -128,6 +158,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(sqlLock); }
         }
+
         /// <summary>
         /// 获取分页数据集合
         /// </summary>

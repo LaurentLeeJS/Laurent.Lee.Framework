@@ -1,6 +1,24 @@
-﻿using System;
-using Laurent.Lee.CLB;
-using System.Collections.Specialized;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.OpenAPI.QQ
 {
@@ -13,14 +31,17 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
         /// 应用配置
         /// </summary>
         private config config;
+
         /// <summary>
         /// 访问令牌
         /// </summary>
         private token token;
+
         /// <summary>
         /// 用户身份的标识
         /// </summary>
         private openId openId;
+
         /// <summary>
         /// 用户身份的标识
         /// </summary>
@@ -28,6 +49,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
         {
             get { return openId.openid; }
         }
+
         /// <summary>
         /// 访问令牌+用户身份的标识
         /// </summary>
@@ -38,10 +60,12 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
                 return new tokenOpenId { Token = token.access_token, OpenId = openId.openid };
             }
         }
+
         /// <summary>
         /// 请求字符串
         /// </summary>
         private string query;
+
         /// <summary>
         /// API调用
         /// </summary>
@@ -55,6 +79,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             this.openId = openId;
             query = "access_token=" + token.access_token + "&oauth_consumer_key=" + config.client_id + "&openid=" + openId.openid;
         }
+
         /// <summary>
         /// 登录用户在QQ空间的信息[仅网站]
         /// </summary>
@@ -63,6 +88,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
         {
             return config.Request.RequestJson<userInfo>(@"https://graph.qq.com/user/get_user_info?" + query + "&format=json");
         }
+
         /// <summary>
         /// 登录用户在QQ空间的简单个人信息gde
         /// </summary>
@@ -71,6 +97,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
         {
             return config.Request.RequestJson<simpleUserInfo>(@"https://graph.qq.com/user/get_simple_userinfo?" + query);
         }
+
         /// <summary>
         /// 表单提交
         /// </summary>
@@ -86,6 +113,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             form.format = "json";
             return this.form<TJsonType, TFormType>(url, form);
         }
+
         /// <summary>
         /// 表单提交
         /// </summary>
@@ -103,6 +131,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             form.openid = openId.openid;
             return config.Request.RequestJson<TJsonType, TFormType>(url, form);
         }
+
         /// <summary>
         /// 发表一个网页分享，分享应用中的内容给好友
         /// </summary>
@@ -113,6 +142,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             value.site = config.site;
             return format<isValue, feeds>(@"https://graph.qq.com/share/add_share", value);
         }
+
         ///// <summary>
         ///// 发表日志到QQ空间
         ///// </summary>

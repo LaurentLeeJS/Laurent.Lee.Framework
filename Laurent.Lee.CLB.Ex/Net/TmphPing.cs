@@ -1,4 +1,26 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Net;
 using System.Net.Sockets;
 
@@ -13,10 +35,12 @@ namespace Laurent.Lee.CLB.Net
         /// 发送数据包字节长度
         /// </summary>
         private const int packetSize = 32;
+
         /// <summary>
         /// PING序列号
         /// </summary>
         private static ushort currentIdentity;
+
         /// <summary>
         /// 获取下一个PING序列号
         /// </summary>
@@ -29,30 +53,37 @@ namespace Laurent.Lee.CLB.Net
                 return value;
             }
         }
+
         /// <summary>
         /// 默认发送数据
         /// </summary>
         private static readonly TmphPointer defaultSendData;
+
         /// <summary>
         /// 发送数据超时毫秒数
         /// </summary>
         private int sendTimeout;
+
         /// <summary>
         /// 接收数据超时毫秒数
         /// </summary>
         private int receiveTimeout;
+
         /// <summary>
         /// 套接字
         /// </summary>
         private Socket socket;
+
         /// <summary>
         /// 数据缓冲区
         /// </summary>
         private byte[] buffer;
+
         /// <summary>
         /// 数据效验和
         /// </summary>
         private readonly int checkSum;
+
         /// <summary>
         /// ICMP回显
         /// </summary>
@@ -81,6 +112,7 @@ namespace Laurent.Lee.CLB.Net
                 for (byte* sendBuffer = sendBufferFixed + packetSize; sendBuffer != sendBufferFixed; checkSum += *(ushort*)(sendBuffer -= 2)) ;
             }
         }
+
         /// <summary>
         /// 创建套接字
         /// </summary>
@@ -96,6 +128,7 @@ namespace Laurent.Lee.CLB.Net
                 socket.DontFragment = true;
             }
         }
+
         /// <summary>
         /// PING指定IP
         /// </summary>
@@ -105,6 +138,7 @@ namespace Laurent.Lee.CLB.Net
         {
             return ip != null && isPing((System.Net.EndPoint)ip);
         }
+
         /// <summary>
         /// PING指定IP
         /// </summary>
@@ -134,7 +168,7 @@ namespace Laurent.Lee.CLB.Net
                         fixed (byte* receiveBufferFixed = buffer)
                         {
                             //*(uint*)(receiveBufferFixed + 0xc) = 0;
-                            if (*(receiveBufferFixed + Packet.TmphIp.DefaultHeaderSize) == 0 && ip4 == *(int*)(receiveBufferFixed + Packet.TmphIp.DefaultHeaderSize + 8) 
+                            if (*(receiveBufferFixed + Packet.TmphIp.DefaultHeaderSize) == 0 && ip4 == *(int*)(receiveBufferFixed + Packet.TmphIp.DefaultHeaderSize + 8)
                                 //&& ip4 == *(uint*)(receiveBufferFixed + 0xc)
                                 && Unsafe.TmphMemory.Equal(receiveBufferFixed + Packet.TmphIp.DefaultHeaderSize + 12, sendBufferFixed + 12, packetSize - 12))
                             {
@@ -149,6 +183,7 @@ namespace Laurent.Lee.CLB.Net
             }
             return false;
         }
+
         /// <summary>
         /// 释放套接字
         /// </summary>
@@ -159,6 +194,7 @@ namespace Laurent.Lee.CLB.Net
             if (socket != null) socket.Close();
             Laurent.Lee.CLB.TmphMemoryPool.TinyBuffers.Push(ref buffer);
         }
+
         static unsafe TmphPing()
         {
             defaultSendData = TmphUnmanaged.Get(packetSize - 12, true);

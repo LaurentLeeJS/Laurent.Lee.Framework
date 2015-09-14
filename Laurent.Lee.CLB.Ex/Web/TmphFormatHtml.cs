@@ -1,4 +1,25 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using System.Collections.Generic;
 
 namespace Laurent.Lee.CLB.Web
@@ -12,10 +33,12 @@ namespace Laurent.Lee.CLB.Web
         /// 允许tag名称集合
         /// </summary>
         public static readonly string[] TagNames = new string[] { "a", "b", "big", "blockquote", "br", "center", "TmphCode", "dd", "del", "div", "dl", "dt", "em", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "li", "ol", "p", "pre", "s", "small", "span", "strike", "strong", "sub", "sup", "table", "tbody", "td", "th", "thead", "title", "tr", "u", "ul" };
+
         /// <summary>
         /// 允许tag名称集合
         /// </summary>
         private static readonly CLB.TmphStateSearcher.TmphAscii<string> tagNames = new CLB.TmphStateSearcher.TmphAscii<string>(TagNames, TagNames);
+
         /// <summary>
         /// 安全格式化
         /// </summary>
@@ -51,6 +74,7 @@ namespace Laurent.Lee.CLB.Web
             }
             return html;
         }
+
         /// <summary>
         /// 格式化样式表
         /// </summary>
@@ -77,6 +101,7 @@ namespace Laurent.Lee.CLB.Web
             }
             return null;
         }
+
         /// <summary>
         /// 判断连接地址是否以http或者https开头
         /// </summary>

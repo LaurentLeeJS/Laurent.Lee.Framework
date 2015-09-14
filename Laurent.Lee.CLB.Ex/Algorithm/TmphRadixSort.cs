@@ -1,28 +1,37 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 
 namespace Laurent.Lee.CLB.Algorithm
 {
-    /// <summary>
-    ///     基数排序
-    /// </summary>
     public static class TmphRadixSort
     {
-        /// <summary>
-        ///     计数缓冲区
-        /// </summary>
 #if MONO
         private static TmphMemoryPool countBuffer = TmphMemoryPool.GetPool(256 * 4 * sizeof(int));
 #else
         private static readonly TmphMemoryPool countBuffer = TmphMemoryPoolProxy.GetPool(256 * 4 * sizeof(int));
 #endif
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="arrayFixed">数组起始位置</param>
-        /// <param name="newArrayFixed">目标数组起始位置</param>
-        /// <param name="swapFixed">临时数组起始位置</param>
-        /// <param name="length">数组数据长度</param>
         private static unsafe void sort(uint* arrayFixed, uint* newArrayFixed, uint* swapFixed, int length)
         {
             bool isNewCount;
@@ -74,13 +83,6 @@ namespace Laurent.Lee.CLB.Algorithm
             countBuffer.Push(ref count);
         }
 
-        /// <summary>
-        ///     索引数组排序
-        /// </summary>
-        /// <param name="arrayFixed">数组起始位置</param>
-        /// <param name="arrayFixed">目标数组起始位置</param>
-        /// <param name="swapFixed">临时数组起始位置</param>
-        /// <param name="length">数组数据长度</param>
         public static unsafe void Sort(TmphUintSortIndex* arrayFixed, TmphUintSortIndex* swapFixed, int length)
         {
             bool isNewCount;
@@ -132,12 +134,6 @@ namespace Laurent.Lee.CLB.Algorithm
             countBuffer.Push(ref count);
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="array">待排序数组</param>
-        /// <param name="startIndex">起始位置</param>
-        /// <param name="count">排序数据数量</param>
         public static unsafe void Sort(uint[] array, int startIndex, int count)
         {
             var swapArray = new uint[count];
@@ -148,13 +144,6 @@ namespace Laurent.Lee.CLB.Algorithm
             }
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="array">待排序数组</param>
-        /// <param name="startIndex">起始位置</param>
-        /// <param name="count">排序数据数量</param>
-        /// <returns>排序后的新数组</returns>
         public static unsafe uint[] GetSort(uint[] array, int startIndex, int count)
         {
             uint[] newArray = new uint[count], swapArray = new uint[count];
@@ -165,13 +154,6 @@ namespace Laurent.Lee.CLB.Algorithm
             return newArray;
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="arrayFixed">数组起始位置</param>
-        /// <param name="newArrayFixed">目标数组起始位置</param>
-        /// <param name="swapFixed">临时数组起始位置</param>
-        /// <param name="length">数组数据长度</param>
         private static unsafe void sortDesc(uint* arrayFixed, uint* newArrayFixed, uint* swapFixed, int length)
         {
             bool isNewCount;
@@ -224,12 +206,6 @@ namespace Laurent.Lee.CLB.Algorithm
             countBuffer.Push(ref count);
         }
 
-        /// <summary>
-        ///     索引数组排序
-        /// </summary>
-        /// <param name="arrayFixed">数组起始位置</param>
-        /// <param name="arrayFixed">目标数组起始位置</param>
-        /// <param name="swapFixed">临时数组起始位置</param>
         /// <param name="length">数组数据长度</param>
         public static unsafe void SortDesc(TmphUintSortIndex* arrayFixed, TmphUintSortIndex* swapFixed, int length)
         {
@@ -283,12 +259,6 @@ namespace Laurent.Lee.CLB.Algorithm
             countBuffer.Push(ref count);
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="array">待排序数组</param>
-        /// <param name="startIndex">起始位置</param>
-        /// <param name="count">排序数据数量</param>
         public static unsafe void SortDesc(uint[] array, int startIndex, int count)
         {
             var swapArray = new uint[count];
@@ -299,13 +269,6 @@ namespace Laurent.Lee.CLB.Algorithm
             }
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="array">待排序数组</param>
-        /// <param name="startIndex">起始位置</param>
-        /// <param name="count">排序数据数量</param>
-        /// <returns>排序后的新数组</returns>
         public static unsafe uint[] GetSortDesc(uint[] array, int startIndex, int count)
         {
             uint[] newArray = new uint[count], swapArray = new uint[count];
@@ -316,13 +279,6 @@ namespace Laurent.Lee.CLB.Algorithm
             return newArray;
         }
 
-        /// <summary>
-        ///     数组排序
-        /// </summary>
-        /// <param name="arrayFixed">数组起始位置</param>
-        /// <param name="newArrayFixed">目标数组起始位置</param>
-        /// <param name="swapFixed">临时数组起始位置</param>
-        /// <param name="length">数组数据长度</param>
         private static unsafe void sort(int* arrayFixed, int* newArrayFixed, uint* swapFixed, int length)
         {
             bool isNewCount;

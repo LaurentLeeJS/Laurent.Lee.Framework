@@ -1,5 +1,26 @@
-﻿using System;
-using Laurent.Lee.CLB.Code.CSharp;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Collections.Generic;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
@@ -17,10 +38,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
         /// 数据集合
         /// </summary>
         public abstract IEnumerable<TValueType> Values { get; }
+
         /// <summary>
         /// 添加记录事件
         /// </summary>
         public event Action<TValueType> OnInserted;
+
         /// <summary>
         /// 添加记录
         /// </summary>
@@ -29,10 +52,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
         {
             if (OnInserted != null) OnInserted(value);
         }
+
         /// <summary>
         /// 更新记录事件
         /// </summary>
         public event Action<TValueType, TValueType> OnUpdated;
+
         /// <summary>
         /// 更新记录
         /// </summary>
@@ -42,10 +67,12 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
         {
             if (OnUpdated != null) OnUpdated(value, oldValue);
         }
+
         /// <summary>
         /// 删除记录事件
         /// </summary>
         public event Action<TValueType> OnDeleted;
+
         /// <summary>
         /// 删除记录
         /// </summary>
@@ -54,6 +81,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole.Events
         {
             if (OnDeleted != null) OnDeleted(value);
         }
+
         /// <summary>
         /// SQL操作缓存
         /// </summary>

@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.Net.Packet
 {
@@ -16,63 +36,78 @@ namespace Laurent.Lee.CLB.Net.Packet
             /// 回显(Ping)应答
             /// </summary>
             EchoAnswer = 0,
+
             /// <summary>
             /// 目的不可达
             /// </summary>
             Unreachable = 3,
+
             /// <summary>
             /// 源端被关闭
             /// </summary>
             SourceClosed = 4,
+
             /// <summary>
             /// 重定向
             /// </summary>
             Redirect = 5,
+
             /// <summary>
             /// 回显(Ping)请求
             /// </summary>
             EchoRequest = 8,
+
             /// <summary>
             /// 路由器通告
             /// </summary>
             RouterAdvertisement = 9,
+
             /// <summary>
             /// 路由器请求
             /// </summary>
             RouterRequest = 10,
+
             /// <summary>
             /// 超时
             /// </summary>
             Timeout = 11,
+
             /// <summary>
             /// 参数错误
             /// </summary>
             ParameterError = 12,
+
             /// <summary>
             /// 时间戳请求
             /// </summary>
             TimeRequest = 13,
+
             /// <summary>
             /// 时间戳应答
             /// </summary>
             TimeAnswer = 14,
+
             /// <summary>
             /// 信息请求(已作废)
             /// </summary>
             InformationRequest = 15,
+
             /// <summary>
             /// 信息应答(已作废)
             /// </summary>
             InformationAnswer = 16,
+
             /// <summary>
             /// 地址掩码请求
             /// </summary>
             MaskRequest = 17,
+
             /// <summary>
             /// 地址掩码应答
             /// </summary>
             MaskAnswer = 18,
         }
+
         /// <summary>
         /// ICMP类型相关代码
         /// </summary>
@@ -82,66 +117,82 @@ namespace Laurent.Lee.CLB.Net.Packet
             /// 默认空值
             /// </summary>
             None = 0,
+
             /// <summary>
             /// 网络不可达
             /// </summary>
             Unreachable_Network = 0,
+
             /// <summary>
             /// 主机不可达
             /// </summary>
             Unreachable_Host = 1,
+
             /// <summary>
             /// 协议不可达
             /// </summary>
             Unreachable_Protocol = 2,
+
             /// <summary>
             /// 端口不可达
             /// </summary>
             Unreachable_Port = 3,
+
             /// <summary>
             /// 需要进行分片但设置了不分片比特
             /// </summary>
             Unreachable_Fragment = 4,
+
             /// <summary>
             /// 源站选路失败
             /// </summary>
             Unreachable_Routing = 5,
+
             /// <summary>
             /// 目的网络不认识
             /// </summary>
             Unreachable_NetworkUnknow = 6,
+
             /// <summary>
             /// 目的主机不认识
             /// </summary>
             Unreachable_HostUnknow = 7,
+
             /// <summary>
             /// 源主机被隔离(已作废)
             /// </summary>
             Unreachable_Isolated = 8,
+
             /// <summary>
             /// 目的网络被强制禁止
             /// </summary>
             Unreachable_NetworkDisable = 9,
+
             /// <summary>
             /// 目的主机被强制禁止
             /// </summary>
             Unreachable_HostDisable = 10,
+
             /// <summary>
             /// 由于服务类型TOS，网络不可达
             /// </summary>
             Unreachable_NetworkTOS = 11,
+
             /// <summary>
             /// 由于服务类型TOS，主机不可达
             /// </summary>
             Unreachable_HostTOS = 12,
+
             /// <summary>
             /// 由于过滤，通信被强制禁止
             /// </summary>
             Unreachable_Filter = 13,
+
             /// <summary>
             /// 主机越权
             /// </summary>
             Unreachable_UltraVires = 14,
+
             /// <summary>
             /// 优先权中止生效
             /// </summary>
@@ -151,14 +202,17 @@ namespace Laurent.Lee.CLB.Net.Packet
             /// 对网络重定向
             /// </summary>
             Redirect_Network = 0,
+
             /// <summary>
             /// 对主机重定向
             /// </summary>
             Redirect_Host = 1,
+
             /// <summary>
             /// 对服务类型和网络重定向
             /// </summary>
             Redirect_NetworkTOS = 2,
+
             /// <summary>
             /// 对服务类型和主机重定向
             /// </summary>
@@ -168,6 +222,7 @@ namespace Laurent.Lee.CLB.Net.Packet
             /// 传输期间生存时间为0
             /// </summary>
             Timeout_Transmission = 0,
+
             /// <summary>
             /// 在数据报组装期间生存时间为0
             /// </summary>
@@ -177,23 +232,28 @@ namespace Laurent.Lee.CLB.Net.Packet
             /// 坏的IP首部（包括各种差错）
             /// </summary>
             ParameterError_IpHeader = 0,
+
             /// <summary>
             /// 缺少必需的选项
             /// </summary>
             ParameterError_Options = 1,
         }
+
         /// <summary>
         /// ICMP类型对应数据包最小长度
         /// </summary>
         private static readonly byte[] minTypeSize;
+
         /// <summary>
         /// ICMP类型对应数组长度
         /// </summary>
         private static readonly int typeCount = Laurent.Lee.CLB.TmphEnum.GetMaxValue<TmphType>(-1) + 1;
+
         /// <summary>
         /// 数据
         /// </summary>
         private TmphSubArray<byte> data;
+
         /// <summary>
         /// 数据包是否有效
         /// </summary>
@@ -201,6 +261,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array != null; }
         }
+
         /// <summary>
         /// ICMP类型
         /// </summary>
@@ -208,6 +269,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return (TmphType)data.Array[data.StartIndex]; }
         }
+
         /// <summary>
         /// 代码
         /// </summary>
@@ -215,6 +277,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return (TmphCode)data.Array[data.StartIndex + 1]; }
         }
+
         /// <summary>
         /// 校验和
         /// </summary>
@@ -230,6 +293,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 4] << 8) + data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// 回显(ping)序列号
         /// </summary>
@@ -245,6 +309,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 4] << 8) + data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// 掩码序列号
         /// </summary>
@@ -252,6 +317,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 6] << 8) + data.Array[data.StartIndex + 7]; }
         }
+
         /// <summary>
         /// 掩码地址
         /// </summary>
@@ -267,6 +333,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 4] << 8) + data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// 时间戳序列号
         /// </summary>
@@ -274,6 +341,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return ((uint)data.Array[data.StartIndex + 6] << 8) + data.Array[data.StartIndex + 7]; }
         }
+
         /// <summary>
         /// 时间戳请求时间，请求端填写发起时间戳，然后发送报文。(返回的是自午夜开始记算的毫秒数)
         /// </summary>
@@ -281,6 +349,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return Laurent.Lee.CLB.Unsafe.TmphMemory.GetUIntBigEndian(data.Array, data.StartIndex + 8); }
         }
+
         /// <summary>
         /// 时间戳接收时间，应答系统收到报文填写接收时间戳。
         /// </summary>
@@ -288,6 +357,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return Laurent.Lee.CLB.Unsafe.TmphMemory.GetUIntBigEndian(data.Array, data.StartIndex + 12); }
         }
+
         /// <summary>
         /// 时间戳发送时间，发送应答时填写发送时间戳。
         /// </summary>
@@ -319,6 +389,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex + 4]; }
         }
+
         /// <summary>
         /// 路由器通告地址项长度
         /// </summary>
@@ -326,6 +397,7 @@ namespace Laurent.Lee.CLB.Net.Packet
         {
             get { return data.Array[data.StartIndex + 5]; }
         }
+
         /// <summary>
         /// 路由器通告生存时间
         /// </summary>
@@ -345,6 +417,7 @@ namespace Laurent.Lee.CLB.Net.Packet
                 return data.Count > minSize ? TmphSubArray<byte>.Unsafe(data.Array, data.StartIndex + minSize, data.Count - minSize) : default(TmphSubArray<byte>);
             }
         }
+
         /// ICMP数据包扩展。整个I P首部最长只能包括15个32bit长的字（即60个字节）。由于IP首部固定长度为20字节，RR选项用去3个字节，这样只剩下37个字节来存放IP地址清单，也就是说只能存放9个IP地址。
         /// RR选项TmphCode值为7。len是RR选项总字节长度，最大39。ptr是一个基于1的指针，指向存放下一个IP地址的位置，它的最小值为4+4x。
         /// IP时间戳选TmphCode值为0x44。len一般是36或40。prt指向下一个时间，最小为5+4x。ooooabxd，oooo为溢出字段，a表示只记录时间(4x)，b表示记录时间与IP地址(8x)，d表示发送端初始化时间与IP地址(8x，只有路由IP匹配时才记录时间戳)。
@@ -372,9 +445,11 @@ namespace Laurent.Lee.CLB.Net.Packet
             }
             this.data = default(TmphSubArray<byte>);
         }
+
         static TmphIcmp()
         {
             #region 初始化 ICMP类型对应数据包最小长度
+
             minTypeSize = new byte[typeCount];
             minTypeSize[(int)TmphType.EchoAnswer] = 8;
             minTypeSize[(int)TmphType.Unreachable] = 8;
@@ -389,7 +464,8 @@ namespace Laurent.Lee.CLB.Net.Packet
             minTypeSize[(int)TmphType.TimeAnswer] = 20;
             minTypeSize[(int)TmphType.MaskRequest] = 12;
             minTypeSize[(int)TmphType.MaskAnswer] = 12;
-            #endregion
+
+            #endregion 初始化 ICMP类型对应数据包最小长度
         }
     }
 }

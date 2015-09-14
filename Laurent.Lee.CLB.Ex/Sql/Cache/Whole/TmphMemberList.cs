@@ -1,9 +1,28 @@
-﻿using System;
-using Laurent.Lee.CLB.Code.CSharp;
-using System.Collections.Generic;
-using System.Threading;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
+using System;
 using System.Linq.Expressions;
-using System.Reflection;
+using System.Threading;
 
 namespace Laurent.Lee.CLB.Sql.Cache.Whole
 {
@@ -23,6 +42,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         /// 移除数据并使用最后一个数据移动到当前位置
         /// </summary>
         protected bool isRemoveEnd;
+
         /// <summary>
         /// 分组列表缓存
         /// </summary>
@@ -46,6 +66,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 resetLock();
             }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -58,6 +79,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             }
             finally { Monitor.Exit(cache.SqlTool.Lock); }
         }
+
         /// <summary>
         /// 重新加载数据
         /// </summary>
@@ -65,6 +87,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             foreach (TValueType value in cache.Values) onInserted(value);
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -73,6 +96,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             onInserted(value, getKey(value));
         }
+
         /// <summary>
         /// 添加数据
         /// </summary>
@@ -88,6 +112,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 list.Add(value);
             }
         }
+
         /// <summary>
         /// 更新数据
         /// </summary>
@@ -102,6 +127,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 onDeleted(value, oldKey);
             }
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -127,6 +153,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
                 TmphLog.Error.Add(typeof(TValueType).FullName + " 缓存同步错误", false, true);
             }
         }
+
         /// <summary>
         /// 删除数据
         /// </summary>
@@ -135,6 +162,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             onDeleted(value, getKey(value));
         }
+
         /// <summary>
         /// 获取缓存
         /// </summary>
@@ -145,6 +173,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             TTargetType target = getValue(key);
             return target != null ? getMember(target) : null;
         }
+
         /// <summary>
         /// 获取匹配数据数量
         /// </summary>
@@ -154,6 +183,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetCache(key).Count();
         }
+
         /// <summary>
         /// 获取匹配数据数量
         /// </summary>
@@ -164,6 +194,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetCache(key).count(isValue);
         }
+
         /// <summary>
         /// 获取第一个数据
         /// </summary>
@@ -174,6 +205,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
             TmphList<TValueType> list = GetCache(key);
             return list.Count() != 0 ? list.Unsafer.Array[0] : nullValue;
         }
+
         /// <summary>
         /// 获取第一个匹配数据
         /// </summary>
@@ -184,6 +216,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetCache(key).firstOrDefault(isValue);
         }
+
         /// <summary>
         /// 获取数据集合
         /// </summary>
@@ -193,6 +226,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetCache(key).getArray();
         }
+
         /// <summary>
         /// 获取匹配数据集合
         /// </summary>
@@ -203,6 +237,7 @@ namespace Laurent.Lee.CLB.Sql.Cache.Whole
         {
             return GetCache(key).toSubArray().GetFindArray(isValue);
         }
+
         /// <summary>
         /// 获取逆序分页数据
         /// </summary>

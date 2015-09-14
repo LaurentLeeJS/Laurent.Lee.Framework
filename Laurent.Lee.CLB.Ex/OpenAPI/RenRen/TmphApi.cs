@@ -1,4 +1,24 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
 
 namespace Laurent.Lee.CLB.OpenAPI.RenRen
 {
@@ -11,10 +31,12 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
         /// 应用配置
         /// </summary>
         private config config;
+
         /// <summary>
         /// 访问令牌
         /// </summary>
         private token token;
+
         /// <summary>
         /// 访问令牌用户
         /// </summary>
@@ -22,6 +44,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
         {
             get { return token.user; }
         }
+
         /// <summary>
         /// 访问令牌+用户身份的标识
         /// </summary>
@@ -32,6 +55,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
                 return new refreshToken { access_token = token.access_token, refresh_token = token.refresh_token, id = token.user.id };
             }
         }
+
         /// <summary>
         /// API调用
         /// </summary>
@@ -42,6 +66,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
             this.config = config;
             this.token = token;
         }
+
         /// <summary>
         /// 表单提交
         /// </summary>
@@ -57,6 +82,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
             form.access_token = token.access_token;
             return config.Request.RequestJson<TJsonType, TFormType>(url, form);
         }
+
         /// <summary>
         /// 发表一个网页分享，分享应用中的内容给好友
         /// </summary>
@@ -67,6 +93,7 @@ namespace Laurent.Lee.CLB.OpenAPI.RenRen
             value.method = "share.share";
             return form<share, shareQuery>(@"https://api.renren.com/restserver.do", value);
         }
+
         //string query = "access_token=" + accessToken + "&method=users.getInfo&fields=uid,name,sex,mainurl&call_id=" + DateTime.Now.Ticks.ToString() + @"&v=1.0&format=JSON";
         //using (MD5 md5 = new MD5CryptoServiceProvider())
         //{

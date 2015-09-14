@@ -1,8 +1,30 @@
-﻿using System;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Code;
-using System.Threading;
-using System.Collections.Generic;
 using Laurent.Lee.CLB.MemoryDataBase.Cache;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace Laurent.Lee.CLB.MemoryDatabase.Cache
 {
@@ -31,14 +53,17 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             }
             return (int)value;
         }
+
         /// <summary>
         /// 数据集合
         /// </summary>
         private TmphArrayValue[] array;
+
         /// <summary>
         /// 对象数量
         /// </summary>
         public int Count { get; private set; }
+
         /// <summary>
         /// 枚举数据集合
         /// </summary>
@@ -52,6 +77,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
                 }
             }
         }
+
         /// <summary>
         /// 获取数组
         /// </summary>
@@ -65,6 +91,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             }
             return TmphSubArray;
         }
+
         /// <summary>
         /// 获取数组
         /// </summary>
@@ -73,10 +100,12 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return GetSubArray().ToArray();
         }
+
         /// <summary>
         /// 当前自增值
         /// </summary>
         private int currentIdentity;
+
         /// <summary>
         /// 获取下一个自增值
         /// </summary>
@@ -87,6 +116,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             TmphLog.Error.Throw(TmphLog.TmphExceptionType.ErrorOperation);
             return int.MinValue;
         }
+
         /// <summary>
         /// 是否存在关键字
         /// </summary>
@@ -96,6 +126,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return (uint)identity < (uint)array.Length && array[identity].Value != null;
         }
+
         /// <summary>
         /// 获取数据
         /// </summary>
@@ -105,6 +136,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
         {
             return (uint)identity < (uint)array.Length ? array[identity].Value : null;
         }
+
         /// <summary>
         /// 新建对象数组
         /// </summary>
@@ -116,6 +148,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             Array.Copy(array, 0, newArray, 0, array.Length);
             array = newArray;
         }
+
         /// <summary>
         /// 加载日志添加对象
         /// </summary>
@@ -130,6 +163,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             ++Count;
             if (identity > currentIdentity) currentIdentity = identity;
         }
+
         /// <summary>
         /// 加载日志修改对象
         /// </summary>
@@ -144,6 +178,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
                 if (TCacheValue != null) Laurent.Lee.CLB.Emit.TmphMemberCopyer<TModelType>.Copy(TCacheValue, value, memberMap);
             }
         }
+
         /// <summary>
         /// 加载日志删除对象
         /// </summary>
@@ -163,6 +198,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             }
             return 0;
         }
+
         /// <summary>
         /// 日志数据加载完成
         /// </summary>
@@ -184,6 +220,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             }
             finally { onLoaded(); }
         }
+
         /// <summary>
         /// 添加对象
         /// </summary>
@@ -200,6 +237,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             ++Count;
             return value;
         }
+
         /// <summary>
         /// 删除对象
         /// </summary>
@@ -221,6 +259,7 @@ namespace Laurent.Lee.CLB.MemoryDatabase.Cache
             return null;
         }
     }
+
     /// <summary>
     /// 自增数组缓存
     /// </summary>

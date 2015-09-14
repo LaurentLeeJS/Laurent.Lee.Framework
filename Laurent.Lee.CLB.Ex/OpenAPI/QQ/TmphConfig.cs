@@ -1,11 +1,27 @@
-﻿using System;
-using System.Web;
-using System.Threading;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using System.Text;
-using Laurent.Lee.CLB;
-using Laurent.Lee.CLB.Threading;
-using Laurent.Lee.CLB.Net;
-using System.Collections.Specialized;
+using System.Web;
 
 namespace Laurent.Lee.CLB.OpenAPI.QQ
 {
@@ -18,28 +34,36 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
         /// 编码绑定请求
         /// </summary>
         public static readonly TmphEncodingRequest Request = new TmphEncodingRequest(OpenAPI.TmphRequest.Default, Encoding.UTF8);
+
 #pragma warning disable 649
+
         /// <summary>
         /// 申请接入时注册的网站名称
         /// </summary>
         public string site;
+
         /// <summary>
         /// appid
         /// </summary>
         public string client_id;
+
         /// <summary>
         /// appkey
         /// </summary>
         private string client_secret;
+
         /// <summary>
         /// 登陆成功回调地址
         /// </summary>
         private string redirect_uri;
+
 #pragma warning restore 649
+
         /// <summary>
         /// URL编码 登陆成功回调地址
         /// </summary>
         private string encodeRedirectUri;
+
         /// <summary>
         /// URL编码 登陆成功回调地址
         /// </summary>
@@ -51,14 +75,17 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
                 return encodeRedirectUri;
             }
         }
+
         /// <summary>
         /// 访问令牌 查询字符串
         /// </summary>
         private const string access_token = "access_token=";
+
         /// <summary>
         /// 有效期，单位为秒 查询字符串
         /// </summary>
         private const string expires_in = "expires_in=";
+
         /// <summary>
         /// 获取一个新令牌
         /// </summary>
@@ -79,6 +106,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             }
             return token;
         }
+
         /// <summary>
         /// 获取api调用
         /// </summary>
@@ -95,6 +123,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             }
             return null;
         }
+
         /// <summary>
         /// 获取api调用
         /// </summary>
@@ -108,6 +137,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             }
             return null;
         }
+
         /// <summary>
         /// 获取api调用
         /// </summary>
@@ -118,6 +148,7 @@ namespace Laurent.Lee.CLB.OpenAPI.QQ
             tokenOpenId value = new tokenOpenId();
             return Laurent.Lee.CLB.Emit.TmphJsonParser.Parse(tokenOpenId, ref value) ? GetApi(value) : null;
         }
+
         /// <summary>
         /// 默认配置
         /// </summary>

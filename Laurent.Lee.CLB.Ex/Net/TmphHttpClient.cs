@@ -1,6 +1,28 @@
-﻿using System;
-using System.Net;
+﻿/*
+-------------------------------------------------- -----------------------------------------
+The frame content is protected by copyright law. In order to facilitate individual learning,
+allows to download the program source information, but does not allow individuals or a third
+party for profit, the commercial use of the source information. Without consent,
+does not allow any form (even if partial, or modified) database storage,
+copy the source of information. If the source content provided by third parties,
+which corresponds to the third party content is also protected by copyright.
+
+If you are found to have infringed copyright behavior, please give me a hint. THX!
+
+Here in particular it emphasized that the third party is not allowed to contact addresses
+published in this "version copyright statement" to send advertising material.
+I will take legal means to resist sending spam.
+-------------------------------------------------- ----------------------------------------
+The framework under the GNU agreement, Detail View GNU License.
+If you think about this item affection join the development team,
+Please contact me: LaurentLeeJS@gmail.com
+-------------------------------------------------- ----------------------------------------
+Laurent.Lee.Framework Coded by Laurent Lee
+*/
+
 using Laurent.Lee.CLB.Threading;
+using System;
+using System.Net;
 
 namespace Laurent.Lee.CLB.Net
 {
@@ -18,27 +40,33 @@ namespace Laurent.Lee.CLB.Net
             /// 超时时间
             /// </summary>
             public DateTime Timeout;
+
             /// <summary>
             /// IP地址
             /// </summary>
             public IPAddress[] Ips;
+
             /// <summary>
             /// 域名字符串
             /// </summary>
             public string Domain;
         }
+
         /// <summary>
         /// 域名转换IP地址集合
         /// </summary>
         private static readonly TmphFifoPriorityQueue<TmphHashBytes, TmphIpAddress> domainIps = new TmphFifoPriorityQueue<TmphHashBytes, TmphIpAddress>();
+
         /// <summary>
         /// 域名转换IP地址访问锁
         /// </summary>
         private static int domainIpLock;
+
         /// <summary>
         /// 域名转IP地址缓存超时时钟周期
         /// </summary>
         private static readonly long domainIpTimeoutTicks = new TimeSpan(0, Config.TmphHttp.Default.IpAddressTimeoutMinutes, 0).Ticks;
+
         /// <summary>
         /// 清除域名转换IP地址集合
         /// </summary>
@@ -48,6 +76,7 @@ namespace Laurent.Lee.CLB.Net
             domainIps.Clear();
             domainIpLock = 0;
         }
+
         /// <summary>
         /// 设置域名转换IP地址
         /// </summary>
@@ -63,6 +92,7 @@ namespace Laurent.Lee.CLB.Net
             }
             finally { domainIpLock = 0; }
         }
+
         /// <summary>
         /// 根据域名获取IP地址
         /// </summary>
@@ -117,6 +147,7 @@ namespace Laurent.Lee.CLB.Net
             }
             return null;
         }
+
         static TmphHttpClient()
         {
             if (Laurent.Lee.CLB.Config.TmphAppSetting.IsCheckMemory) TmphCheckMemory.Add(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
