@@ -262,7 +262,7 @@ namespace Laurent.Lee.CLB.MemoryDataBase.Cache
         /// <summary>
         ///     数据对象
         /// </summary>
-        protected struct FArrayValue
+        protected struct TmphArrayValue
         {
             /// <summary>
             ///     关键字操作锁
@@ -307,12 +307,12 @@ namespace Laurent.Lee.CLB.MemoryDataBase.Cache
         /// <summary>
         ///     缓存数据
         /// </summary>
-        protected sealed class THCacheValue
+        protected sealed class TmphCacheValue
         {
             /// <summary>
             ///     获取数据委托
             /// </summary>
-            public static readonly Func<THCacheValue, TValueType> GetValue = getValue;
+            public static readonly Func<TmphCacheValue, TValueType> GetValue = getValue;
 
             /// <summary>
             ///     关键字操作锁
@@ -333,7 +333,7 @@ namespace Laurent.Lee.CLB.MemoryDataBase.Cache
             ///     获取数据
             /// </summary>
             /// <param name="value"></param>
-            private static TValueType getValue(THCacheValue value)
+            private static TValueType getValue(TmphCacheValue value)
             {
                 return value.Value;
             }

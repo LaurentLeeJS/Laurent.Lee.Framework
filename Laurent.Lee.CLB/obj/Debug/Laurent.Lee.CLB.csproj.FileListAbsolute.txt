@@ -1,0 +1,5 @@
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB\bin\Debug\Laurent.Lee.CLB.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB\bin\Debug\Laurent.Lee.CLB.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB\bin\Debug\MySql.Data.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB\obj\Debug\Laurent.Lee.CLB.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB\obj\Debug\Laurent.Lee.CLB.pdb

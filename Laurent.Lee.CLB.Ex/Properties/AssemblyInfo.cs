@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Laurent Lee Framework.CoreLibrary.Expend")]
-[assembly: AssemblyDescription("C# Framework.CoreLibrary.Expend by Laurent Lee")]
+[assembly: AssemblyTitle("Laurent Lee Framework.CLB.Expend")]
+[assembly: AssemblyDescription("C# Framework.CLB.Expend by Laurent Lee")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Laurent Lee")]
 [assembly: AssemblyProduct("LLFramework")]

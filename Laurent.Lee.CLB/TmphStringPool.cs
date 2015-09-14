@@ -8,7 +8,7 @@ namespace Laurent.Lee.CLB
     /// <summary>
     /// 快速字符串池
     /// </summary>
-    internal abstract class TmphStringPool
+    public abstract class TmphStringPool
     {
         /// <summary>
         /// 缓冲区集合访问锁

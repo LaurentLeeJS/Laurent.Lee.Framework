@@ -14,6 +14,7 @@
    limitations under the License.
  */
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace Laurent.Lee.CLB.Win32
@@ -21,7 +22,7 @@ namespace Laurent.Lee.CLB.Win32
     /// <summary>
     ///     kernel32.dll API
     /// </summary>
-    internal static class TmphKernel32
+    public static class TmphKernel32
     {
         /// <summary>
         ///     内存复制
@@ -29,8 +30,8 @@ namespace Laurent.Lee.CLB.Win32
         /// <param name="dest">目标位置</param>
         /// <param name="src">源位置</param>
         /// <param name="length">字节长度</param>
-        [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        internal static extern unsafe void RtlMoveMemory(void* dest, void* src, int length);
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern unsafe void RtlMoveMemory(void* dest, void* src, int length);
 
         /// <summary>
         ///     获取指定磁盘的信息，包括磁盘的可用空间。
