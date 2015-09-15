@@ -1,0 +1,5 @@
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.WCF\bin\Debug\Laurent.Lee.WCF.dll.config
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.WCF\bin\Debug\Laurent.Lee.WCF.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.WCF\bin\Debug\Laurent.Lee.WCF.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.WCF\obj\Debug\Laurent.Lee.WCF.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.WCF\obj\Debug\Laurent.Lee.WCF.pdb

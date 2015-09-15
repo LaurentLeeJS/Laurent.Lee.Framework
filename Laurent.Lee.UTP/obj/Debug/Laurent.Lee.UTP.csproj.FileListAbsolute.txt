@@ -1,0 +1,7 @@
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\bin\Debug\Laurent.Lee.UTP.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\bin\Debug\Laurent.Lee.UTP.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\obj\Debug\Laurent.Lee.UTP.csprojResolveAssemblyReference.cache
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\obj\Debug\Laurent.Lee.UTP.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.UTP\obj\Debug\Laurent.Lee.UTP.pdb
