@@ -33,7 +33,7 @@ ORM supports the natural and flexible Model field type, supporting composite dat
 ORM supports inheritance, Model and Table 1 to achieve more.
 To provide a variety of commonly used cache mode, support custom cache mode.
 The multi table operation recommended cache mode, after all, cheaper than artificial memory optimization.
---------------------------------------------------------------------------------------------------------------
+
 Interested Geeker/Hacker/Programmer can be feedback to me, or contact me to join this framework of the GitHub development group (due to the realization of their own, at present, a person);
 If you join the team. Best if you have some programming skills, prior to the submission of the debug about, never submit garbage code, so as not to harm other open source enthusiasts (I do not have so much energy to audit other people's code);
 Want to achieve together can give my email: Gmail:LaurentLeeJS@Gmail.com
