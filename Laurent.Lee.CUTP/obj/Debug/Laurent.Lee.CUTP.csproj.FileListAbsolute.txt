@@ -18,6 +18,6 @@ D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\bin\Debug\de\DevEx
 D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\bin\Debug\es\DevExpress.Printing.v15.1.Core.resources.dll
 D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\bin\Debug\ja\DevExpress.Printing.v15.1.Core.resources.dll
 D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\bin\Debug\ru\DevExpress.Printing.v15.1.Core.resources.dll
-D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\obj\Debug\Laurent.Lee.CUTP.csprojResolveAssemblyReference.cache
 D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\obj\Debug\Laurent.Lee.CUTP.dll
 D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\obj\Debug\Laurent.Lee.CUTP.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CUTP\obj\Debug\Laurent.Lee.CUTP.csprojResolveAssemblyReference.cache

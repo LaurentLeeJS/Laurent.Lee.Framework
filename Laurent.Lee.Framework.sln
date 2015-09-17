@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laurent.Lee.Report", "Laure
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Laurent.Lee.Database", "Laurent.Lee.Database\Laurent.Lee.Database.sqlproj", "{8489F181-BC43-418B-96F8-7C31CAD14DFD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Laurent.Lee.WLB", "Laurent.Lee.WLB\Laurent.Lee.WLB.csproj", "{615AD290-66CC-4D6C-A5E9-DC22A5E93FA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{8489F181-BC43-418B-96F8-7C31CAD14DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8489F181-BC43-418B-96F8-7C31CAD14DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8489F181-BC43-418B-96F8-7C31CAD14DFD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{615AD290-66CC-4D6C-A5E9-DC22A5E93FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{615AD290-66CC-4D6C-A5E9-DC22A5E93FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{615AD290-66CC-4D6C-A5E9-DC22A5E93FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{615AD290-66CC-4D6C-A5E9-DC22A5E93FA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
