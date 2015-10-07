@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4A6708D3-4858-4513-B5E1-111A5880CBA5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Laurent.Lee.CLB</RootNamespace>
+    <AssemblyName>Laurent.Lee.CLB</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithm\TmphHashCode.cs" />
+    <Compile Include="Algorithm\TmphQuickSort.cs" />
+    <Compile Include="Code\CSharp\TmphAjax.cs" />
+    <Compile Include="Code\CSharp\TmphAsynchronousMethod.cs" />
+    <Compile Include="Code\CSharp\TmphDataModel.cs" />
+    <Compile Include="Code\CSharp\TmphDataSerialize.cs" />
+    <Compile Include="Code\CSharp\TmphMemoryDatabaseModel.cs" />
+    <Compile Include="Code\CSharp\TmphSqlModel.cs" />
+    <Compile Include="Code\CSharp\TmphTcpBase.cs" />
+    <Compile Include="Code\CSharp\TmphTcpCall.cs" />
+    <Compile Include="Code\CSharp\TmphTcpServer.cs" />
+    <Compile Include="Code\CSharp\TmphWebCall.cs" />
+    <Compile Include="Code\CSharp\TmphWebPage.cs" />
+    <Compile Include="Code\CSharp\TmphWebView.cs" />
+    <Compile Include="Code\TmphMemberIndexGroup.cs" />
+    <Compile Include="Code\TmphRemoteType.cs" />
+    <Compile Include="Code\TmphAttributeMethod.cs" />
+    <Compile Include="Code\TmphFieldIndex.cs" />
+    <Compile Include="Code\TmphIgnore.cs" />
+    <Compile Include="Code\TmphIgnoreMember.cs" />
+    <Compile Include="Code\TmphMemberFilter.cs" />
+    <Compile Include="Code\TmphMemberFilters.cs" />
+    <Compile Include="Code\TmphMemberIndex.cs" />
+    <Compile Include="Code\TmphMemberInfo.cs" />
+    <Compile Include="Code\TmphMemberMap.cs" />
+    <Compile Include="Code\TmphMemberType.cs" />
+    <Compile Include="Code\TmphMethodInfo.cs" />
+    <Compile Include="Code\TmphParameterInfo.cs" />
+    <Compile Include="Code\TmphPropertyIndex.cs" />
+    <Compile Include="Code\TmphTemplate.cs" />
+    <Compile Include="Code\TmphTestCase.cs" />
+    <Compile Include="Code\TmphTreeBuilder.cs" />
+    <Compile Include="Code\TmphTypeAttribute.cs" />
+    <Compile Include="Code\TmphWebConfig.cs" />
+    <Compile Include="Config\TmphAppSetting.cs" />
+    <Compile Include="Config\TmphDatabase.cs" />
+    <Compile Include="Config\TmphFileBlock.cs" />
+    <Compile Include="Config\TmphHttp.cs" />
+    <Compile Include="Config\TmphMemoryDatabase.cs" />
+    <Compile Include="Config\TmphProcessCopy.cs" />
+    <Compile Include="Config\TmphPub.cs" />
+    <Compile Include="Config\TmphSql.cs" />
+    <Compile Include="Config\TmphTcpCommand.cs" />
+    <Compile Include="Config\TmphTcpRegister.cs" />
+    <Compile Include="Config\TmphWeb.cs" />
+    <Compile Include="Diagnostics\TmphProcessCopyServer.cs" />
+    <Compile Include="DotNet45\TmphMethodImplAttribute.cs" />
+    <Compile Include="DotNet45\TmphMethodImplOptions.cs" />
+    <Compile Include="Emit\TmphJsonNode.cs" />
+    <Compile Include="Emit\TmphBinaryDeSerializer.cs" />
+    <Compile Include="Emit\TmphBinarySerialize.cs" />
+    <Compile Include="Emit\TmphBinarySerializer.cs" />
+    <Compile Include="Emit\TmphConstructor.cs" />
+    <Compile Include="Emit\TmphDatabaseModel.cs" />
+    <Compile Include="Emit\TmphDataDeSerializer.cs" />
+    <Compile Include="Emit\TmphDataMember.cs" />
+    <Compile Include="Emit\TmphDataSerialize.cs" />
+    <Compile Include="Emit\TmphDataSerializer.cs" />
+    <Compile Include="Emit\TmphIndexDeSerializer.cs" />
+    <Compile Include="Emit\TmphIndexSerialize.cs" />
+    <Compile Include="Emit\TmphIndexSerializer.cs" />
+    <Compile Include="Emit\TmphJsonParse.cs" />
+    <Compile Include="Emit\TmphJsonParser.cs" />
+    <Compile Include="Emit\TmphJsonSerialize.cs" />
+    <Compile Include="Emit\TmphJsonSerializer.cs" />
+    <Compile Include="Emit\TmphMemberCopy.cs" />
+    <Compile Include="Emit\TmphMemberCopyer.cs" />
+    <Compile Include="Emit\TmphMemoryDatabaseModel.cs" />
+    <Compile Include="Emit\TmphMemoryDatabaseTable.cs" />
+    <Compile Include="Emit\TmphNumberToCharStream.cs" />
+    <Compile Include="Emit\TmphPub.cs" />
+    <Compile Include="Emit\TmphSqlColumn.cs" />
+    <Compile Include="Emit\TmphSqlModel.cs" />
+    <Compile Include="Emit\TmphSqlTable.cs" />
+    <Compile Include="IO\Compression\TmphCompressionStream.cs" />
+    <Compile Include="IO\TmphCreateFlieTimeoutWatcher.cs" />
+    <Compile Include="IO\TmphFile.cs" />
+    <Compile Include="IO\TmphFileBlockServer.cs" />
+    <Compile Include="IO\TmphFileBlockStream.cs" />
+    <Compile Include="IO\TmphFileStreamWriter.cs" />
+    <Compile Include="MemoryDataBase\Cache\TmphLoadCache.cs" />
+    <Compile Include="MemoryDataBase\TmphPhysical.cs" />
+    <Compile Include="MemoryDataBase\TmphPhysicalServer.cs" />
+    <Compile Include="MemoryDataBase\TmphPhysicalSet.cs" />
+    <Compile Include="Net\Tcp\TmphHost.cs" />
+    <Compile Include="Net\Tcp\Http\TmphBufferIndex.cs" />
+    <Compile Include="Net\Tcp\Http\TmphCookie.cs" />
+    <Compile Include="Net\Tcp\Http\TmphDomain.cs" />
+    <Compile Include="Net\Tcp\Http\TmphDomainServer.cs" />
+    <Compile Include="Net\Tcp\Http\TmphForwardProxy.cs" />
+    <Compile Include="Net\Tcp\Http\TmphRequestForm.cs" />
+    <Compile Include="Net\Tcp\Http\TmphRequestHeader.cs" />
+    <Compile Include="Net\Tcp\Http\TmphResponse.cs" />
+    <Compile Include="Net\Tcp\Http\TmphServer.cs" />
+    <Compile Include="Net\Tcp\Http\TmphServers.cs" />
+    <Compile Include="Net\Tcp\Http\TmphSession.cs" />
+    <Compile Include="Net\Tcp\Http\TmphSocket.cs" />
+    <Compile Include="Net\Tcp\Http\TmphSslServer.cs" />
+    <Compile Include="Net\Tcp\Http\TmphSslStream.cs" />
+    <Compile Include="Net\Tcp\TmphClient.cs" />
+    <Compile Include="Net\Tcp\TmphCommandClient.cs" />
+    <Compile Include="Net\Tcp\TmphCommandLoadBalancingServer.cs" />
+    <Compile Include="Net\Tcp\TmphCommandServer.cs" />
+    <Compile Include="Net\Tcp\TmphCommandSocket.cs" />
+    <Compile Include="Net\Tcp\TmphServer.cs" />
+    <Compile Include="Net\Tcp\TmphTcpRegister.cs" />
+    <Compile Include="Net\Tcp\TmphVerifyMethod.cs" />
+    <Compile Include="Net\TmphClientQueue.cs" />
+    <Compile Include="Net\TmphIpv6Hash.cs" />
+    <Compile Include="Net\TmphSocket.cs" />
+    <Compile Include="Net\TmphSocketAsyncEventArgs.cs" />
+    <Compile Include="Net\TmphTimeoutQueue.cs" />
+    <Compile Include="Reflection\TmphAssembly.cs" />
+    <Compile Include="Reflection\TmphMemberInfo.cs" />
+    <Compile Include="Reflection\TmphMethodInfo.cs" />
+    <Compile Include="Reflection\TmphStaticMethodDelegate.cs" />
+    <Compile Include="Reflection\TmphType.cs" />
+    <Compile Include="SQL\Excel\TmphClient.cs" />
+    <Compile Include="SQL\Excel\TmphConnection.cs" />
+    <Compile Include="SQL\Excel\TmphSqlDbType.cs" />
+    <Compile Include="SQL\Expression\TmphExpressionType.cs" />
+    <Compile Include="SQL\Expression\TmphBinaryExpression.cs" />
+    <Compile Include="SQL\Expression\TmphConditionalExpression.cs" />
+    <Compile Include="SQL\Expression\TmphConstantConverter.cs" />
+    <Compile Include="SQL\Expression\TmphConstantExpression.cs" />
+    <Compile Include="SQL\Expression\TmphConverter.cs" />
+    <Compile Include="SQL\Expression\TmphConvertExpression.cs" />
+    <Compile Include="SQL\Expression\TmphExpression.cs" />
+    <Compile Include="SQL\Expression\TmphExpressionConverter.cs" />
+    <Compile Include="SQL\Expression\TmphFieldExpression.cs" />
+    <Compile Include="SQL\Expression\TmphLambdaExpression.cs" />
+    <Compile Include="SQL\Expression\TmphLogicConstantExpression.cs" />
+    <Compile Include="SQL\Expression\TmphMemberExpression.cs" />
+    <Compile Include="SQL\Expression\TmphMethodCallExpression.cs" />
+    <Compile Include="SQL\Expression\TmphParameterExpression.cs" />
+    <Compile Include="SQL\Expression\TmphPpool.cs" />
+    <Compile Include="SQL\Expression\TmphPropertyExpression.cs" />
+    <Compile Include="SQL\Expression\TmphUnaryExpression.cs" />
+    <Compile Include="SQL\TmphFileBlockMember.cs" />
+    <Compile Include="SQL\TmphJsonMember.cs" />
+    <Compile Include="SQL\MSSQL\TmphConverter.cs" />
+    <Compile Include="SQL\MSSQL\TmphExpressionConverter.cs" />
+    <Compile Include="SQL\MSSQL\TmphSql2000.cs" />
+    <Compile Include="SQL\MSSQL\TmphSql2005.cs" />
+    <Compile Include="SQL\MSSQL\TmphSqlDbType.cs" />
+    <Compile Include="SQL\MYSQL\TmphClient.cs" />
+    <Compile Include="SQL\MYSQL\TmphConverter.cs" />
+    <Compile Include="SQL\MYSQL\TmphExpressionConverter.cs" />
+    <Compile Include="SQL\MYSQL\TmphSqlDbType.cs" />
+    <Compile Include="SQL\TmphClient.cs" />
+    <Compile Include="SQL\TmphColumn.cs" />
+    <Compile Include="SQL\TmphColumnCollection.cs" />
+    <Compile Include="SQL\TmphConnection.cs" />
+    <Compile Include="SQL\TmphExpressionCall.cs" />
+    <Compile Include="SQL\TmphSelectQuery.cs" />
+    <Compile Include="SQL\TmphSqlDbType.cs" />
+    <Compile Include="SQL\TmphTable.cs" />
+    <Compile Include="SQL\TmphTypeInfo.cs" />
+    <Compile Include="Threading\TmphAutoWaitHandle.cs" />
+    <Compile Include="Threading\TmphTaskInfo.cs" />
+    <Compile Include="Threading\TmphCallbackPool.cs" />
+    <Compile Include="Threading\TmphInterlocked.cs" />
+    <Compile Include="Threading\TmphQueue.cs" />
+    <Compile Include="Threading\TmphTask.cs" />
+    <Compile Include="Threading\TmphThread.cs" />
+    <Compile Include="Threading\TmphThreadPool.cs" />
+    <Compile Include="Threading\TmphTimerTask.cs" />
+    <Compile Include="TmphFixedMap.cs" />
+    <Compile Include="TmphGuid.cs" />
+    <Compile Include="TmphICollection.cs" />
+    <Compile Include="TmphKeyValue.cs" />
+    <Compile Include="TmphObjectPool.cs" />
+    <Compile Include="TmphObjectReference.cs" />
+    <Compile Include="TmphSubString.cs" />
+    <Compile Include="TmphUint128.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TmphStringPool.cs" />
+    <Compile Include="TmphDelegate.cs" />
+    <Compile Include="TmphArray.cs" />
+    <Compile Include="TmphArrayHeap.cs" />
+    <Compile Include="TmphCheckMemory.cs" />
+    <Compile Include="TmphCollection.cs" />
+    <Compile Include="TmphCsharp.cs" />
+    <Compile Include="TmphDate.cs" />
+    <Compile Include="TmphDictionary.cs" />
+    <Compile Include="TmphDirectory.cs" />
+    <Compile Include="TmphDomainUnload.cs" />
+    <Compile Include="TmphDynamicArray.cs" />
+    <Compile Include="TmphEnum.cs" />
+    <Compile Include="TmphFifoPriorityQueue.cs" />
+    <Compile Include="TmphHashBytes.cs" />
+    <Compile Include="TmphHashSet.cs" />
+    <Compile Include="TmphHashString.cs" />
+    <Compile Include="TmphIEnumerable.cs" />
+    <Compile Include="TmphIEnumerator.cs" />
+    <Compile Include="TmphList.cs" />
+    <Compile Include="TmphMemory.cs" />
+    <Compile Include="TmphMemoryPool.cs" />
+    <Compile Include="TmphMemoryStream.cs" />
+    <Compile Include="TmphNullValue.cs" />
+    <Compile Include="TmphNumber.cs" />
+    <Compile Include="TmphPointer.cs" />
+    <Compile Include="TmphRandom.cs" />
+    <Compile Include="TmphRun.cs" />
+    <Compile Include="TmphStateSearcher.cs" />
+    <Compile Include="TmphStaticDictionary.cs" />
+    <Compile Include="TmphStaticHash.cs" />
+    <Compile Include="TmphStaticHashIndex.cs" />
+    <Compile Include="TmphString.cs" />
+    <Compile Include="TmphStringBuilder.cs" />
+    <Compile Include="TmphTypePool.cs" />
+    <Compile Include="TmphUniqueDictionary.cs" />
+    <Compile Include="TmphUniqueHashSet.cs" />
+    <Compile Include="TmphUnmanaged.cs" />
+    <Compile Include="TmphUnmanagedPool.cs" />
+    <Compile Include="TmphArrayPool.cs" />
+    <Compile Include="TmphCharStream.cs" />
+    <Compile Include="TmphLog.cs" />
+    <Compile Include="TmphPub.cs" />
+    <Compile Include="TmphSubArray.cs" />
+    <Compile Include="TmphUnmanagedStream.cs" />
+    <Compile Include="Unsafe\TmphArray.cs" />
+    <Compile Include="Unsafe\TmphMemory.cs" />
+    <Compile Include="Unsafe\TmphString.cs" />
+    <Compile Include="Web\TmphAjax.cs" />
+    <Compile Include="Web\TmphContentType.cs" />
+    <Compile Include="Web\TmphDomain.cs" />
+    <Compile Include="Web\TmphFormQuery.cs" />
+    <Compile Include="Web\TmphHeader.cs" />
+    <Compile Include="Web\TmphHtml.cs" />
+    <Compile Include="Web\TmphHttp.cs" />
+    <Compile Include="Win32\TmphKernel32.cs" />
+    <Compile Include="{LaurentLee.Framework}.LaurentLeeFramework.cs" />
+    <Compile Include="{LaurentLee.Framework}.Remember.LaurentLeeFramework.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dll\MySql.Data.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

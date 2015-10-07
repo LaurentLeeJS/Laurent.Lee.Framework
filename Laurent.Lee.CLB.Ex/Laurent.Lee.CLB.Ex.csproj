@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6608B7AD-B627-4E6D-85D0-01D56D25EA9F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Laurent.Lee.CLB.Ex</RootNamespace>
+    <AssemblyName>Laurent.Lee.CLB.Ex</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Algorithm\TmphGroup.cs" />
+    <Compile Include="Algorithm\TmphRadixSort.cs" />
+    <Compile Include="Algorithm\TmphSortIndex.cs" />
+    <Compile Include="Algorithm\TmphTopologySort.cs" />
+    <Compile Include="TmphArray.cs" />
+    <Compile Include="TmphBitMap.cs" />
+    <Compile Include="TmphChineseEncoder.cs" />
+    <Compile Include="Config\TmphSearch.cs" />
+    <Compile Include="TmphCountQueueCache.cs" />
+    <Compile Include="Data\TmphPrimaryKey.cs" />
+    <Compile Include="Data\TmphDataReader.cs" />
+    <Compile Include="Data\TmphDataSet.cs" />
+    <Compile Include="Data\TmphDataSource.cs" />
+    <Compile Include="Data\TmphDataTable.cs" />
+    <Compile Include="Data\TmphDataWriter.cs" />
+    <Compile Include="Diagnostics\TmphProcess.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Diagnostics\TmphConsoleLog.cs" />
+    <Compile Include="Diagnostics\TmphJob.cs" />
+    <Compile Include="TmphDictionary.cs" />
+    <Compile Include="Drawing\GIF\TmphCopyScreen.cs" />
+    <Compile Include="Drawing\GIF\TmphFile.cs" />
+    <Compile Include="Drawing\TmphThumbnail.cs" />
+    <Compile Include="TmphDynamicDomain.cs" />
+    <Compile Include="Emit\TmphEquals.cs" />
+    <Compile Include="Emit\TmphForm.cs" />
+    <Compile Include="Emit\TmphFormGetter.cs" />
+    <Compile Include="Emit\TmphPub.cs" />
+    <Compile Include="Emit\TmphRandom.cs" />
+    <Compile Include="Emit\TmphUrlQuery.cs" />
+    <Compile Include="Emit\TmphUrlQueryGetter.cs" />
+    <Compile Include="TmphEnumParser.cs" />
+    <Compile Include="TmphEqualityComparer.cs" />
+    <Compile Include="TmphIEnumerable.cs" />
+    <Compile Include="IO\TmphDirectory.cs" />
+    <Compile Include="IO\TmphJsonFile.cs" />
+    <Compile Include="TmphList.cs" />
+    <Compile Include="MemoryDataBase\Cache\TmphDictionary.cs" />
+    <Compile Include="MemoryDataBase\Cache\TmphIdentityArray.cs" />
+    <Compile Include="MemoryDataBase\Cache\Index\TmphMember.cs" />
+    <Compile Include="MemoryDataBase\Cache\Index\TmphMemberDictionary.cs" />
+    <Compile Include="MemoryDataBase\Cache\TmphSearchTree.cs" />
+    <Compile Include="TmphMemoryGraph.cs" />
+    <Compile Include="TmphMemoryPoolProxy.cs" />
+    <Compile Include="TmphMemoryStreamProxy.cs" />
+    <Compile Include="TmphMemoryTrieGraph.cs" />
+    <Compile Include="Net\TmphEmail.cs" />
+    <Compile Include="Net\TmphHtmlTitleClient.cs" />
+    <Compile Include="Net\TmphHttpClient.cs" />
+    <Compile Include="Net\Packet\TmphArp.cs" />
+    <Compile Include="Net\Packet\TmphEthernet.cs" />
+    <Compile Include="Net\Packet\TmphEthernetSessionP2P.cs" />
+    <Compile Include="Net\Packet\TmphFrame.cs" />
+    <Compile Include="Net\Packet\TmphIcmp.cs" />
+    <Compile Include="Net\Packet\TmphIcmp6.cs" />
+    <Compile Include="Net\Packet\TmphIgmp.cs" />
+    <Compile Include="Net\Packet\TmphIp.cs" />
+    <Compile Include="Net\Packet\TmphIp6.cs" />
+    <Compile Include="Net\Packet\TmphLinuxSLL.cs" />
+    <Compile Include="Net\Packet\TmphTcp.cs" />
+    <Compile Include="Net\Packet\TmphUdp.cs" />
+    <Compile Include="Net\TmphPing.cs" />
+    <Compile Include="Net\TmphRawSocketListener.cs" />
+    <Compile Include="Net\TmphSocketAsyncEventArgsProxy.cs" />
+    <Compile Include="Net\TmphWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TmphNumber.cs" />
+    <Compile Include="OpenAPI\TmphEncodingRequest.cs" />
+    <Compile Include="OpenAPI\TmphIValue.cs" />
+    <Compile Include="OpenAPI\TmphMicroblog.cs" />
+    <Compile Include="OpenAPI\QQ\TmphApi.cs" />
+    <Compile Include="OpenAPI\QQ\TmphApiForm.cs" />
+    <Compile Include="OpenAPI\QQ\TmphApiFormat.cs" />
+    <Compile Include="OpenAPI\QQ\TmphAppId.cs" />
+    <Compile Include="OpenAPI\QQ\TmphBlog.cs" />
+    <Compile Include="OpenAPI\QQ\TmphBlogReturn.cs" />
+    <Compile Include="OpenAPI\QQ\TmphComment.cs" />
+    <Compile Include="OpenAPI\QQ\TmphCommentQuery.cs" />
+    <Compile Include="OpenAPI\QQ\TmphConfig.cs" />
+    <Compile Include="OpenAPI\QQ\TmphErrorCode.cs" />
+    <Compile Include="OpenAPI\QQ\TmphFeeds.cs" />
+    <Compile Include="OpenAPI\QQ\TmphIsValue.cs" />
+    <Compile Include="OpenAPI\QQ\TmphMicroblog.cs" />
+    <Compile Include="OpenAPI\QQ\TmphMicroblogReturn.cs" />
+    <Compile Include="OpenAPI\QQ\TmphOpenId.cs" />
+    <Compile Include="OpenAPI\QQ\TmphSimpleUserInfo.cs" />
+    <Compile Include="OpenAPI\QQ\TmphToken.cs" />
+    <Compile Include="OpenAPI\QQ\TmphTokenOpenId.cs" />
+    <Compile Include="OpenAPI\QQ\TmphUserInfo.cs" />
+    <Compile Include="OpenAPI\QQ\TmphUserInfoBase.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphApi.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphApiForm.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphAvatar.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphConfig.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphRefreshToken.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphShare.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphShareQuery.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphToken.cs" />
+    <Compile Include="OpenAPI\RenRen\TmphTokenUser.cs" />
+    <Compile Include="OpenAPI\TmphRequest.cs" />
+    <Compile Include="OpenAPI\TmphState.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphApi.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphApiForm.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphConfig.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphGeo.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphMicroblog.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphStatus.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphToken.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphTokenRequest.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphTokenUid.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphUser.cs" />
+    <Compile Include="OpenAPI\WeiBo\TmphVisible.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TmphSearchTree.cs" />
+    <Compile Include="Search\TmphSearcher.cs" />
+    <Compile Include="Search\TmphSimplified.cs" />
+    <Compile Include="Search\TmphTrieGraph.cs" />
+    <Compile Include="Search\TmphWord.cs" />
+    <Compile Include="Sql\Cache\TmphCopy.cs" />
+    <Compile Include="Sql\Cache\TmphICustom.cs" />
+    <Compile Include="Sql\Cache\Part\TmphCounterCache.cs" />
+    <Compile Include="Sql\Cache\Part\Events\TmphCounter.cs" />
+    <Compile Include="Sql\Cache\Part\Events\TmphIdentityCounter.cs" />
+    <Compile Include="Sql\Cache\Part\Events\TmphPrimaryKeyCounter.cs" />
+    <Compile Include="Sql\Cache\Part\TmphQueue.cs" />
+    <Compile Include="Sql\Cache\Part\TmphQueueDictionary.cs" />
+    <Compile Include="Sql\Cache\Part\TmphQueueExpression.cs" />
+    <Compile Include="Sql\Cache\Part\TmphQueueExpressionCustom.cs" />
+    <Compile Include="Sql\Cache\Part\TmphQueueList.cs" />
+    <Compile Include="Sql\Cache\TmphSqlTool.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionary.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryDictionary.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryDictionaryWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryList.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryListOrderLady.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryListOrderLadyWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryListWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionarySearchTree.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphDictionaryWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphCache.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityArray.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityArrayWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityCache.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityDictionaryWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityMemberMap.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphIdentityTree.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphKey.cs" />
+    <Compile Include="Sql\Cache\Whole\Events\TmphPrimaryKey.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMember.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberArrayOrderLady.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberArrayOrderLadyWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberDictionary.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberLadyOrderArray.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberList.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphMemberListWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphSearchTree.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphSearchTreeWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphTimeOutOrderLady.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphTimeOutOrderLadyWhere.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphTimer.cs" />
+    <Compile Include="Sql\Cache\Whole\TmphTimerWhere.cs" />
+    <Compile Include="Sql\TmphMemberExpression.cs" />
+    <Compile Include="Sql\TmphNowTime.cs" />
+    <Compile Include="TmphStaticHashSet.cs" />
+    <Compile Include="TmphString.cs" />
+    <Compile Include="TmphStringPoolProxy.cs" />
+    <Compile Include="TmphSubArray.cs" />
+    <Compile Include="Template\TmphArray.cs" />
+    <Compile Include="Template\TmphGroup.cs" />
+    <Compile Include="Template\TmphICollection.cs" />
+    <Compile Include="Template\TmphIEnumerable.cs" />
+    <Compile Include="Template\TmphQuickSort.cs" />
+    <Compile Include="Template\TmphQuickSortExtension.cs" />
+    <Compile Include="Template\TmphRangeSort.cs" />
+    <Compile Include="Template\TmphSortIndex.cs" />
+    <Compile Include="Template\TmphTopSort.cs" />
+    <Compile Include="Threading\TmphAsynchronous.cs" />
+    <Compile Include="Threading\TmphLockCheck.cs" />
+    <Compile Include="Threading\TmphReadWriteLock.cs" />
+    <Compile Include="Threading\TmphSpinLock.cs" />
+    <Compile Include="Threading\TmphWaitCount.cs" />
+    <Compile Include="TmphTimeoutDictionary.cs" />
+    <Compile Include="TmphTrieGraph.cs" />
+    <Compile Include="TmphUnmanagedPoolProxy.cs" />
+    <Compile Include="TmphUnmanagedStreamProxy.cs" />
+    <Compile Include="TmphUri.cs" />
+    <Compile Include="Web\TmphCookie.cs" />
+    <Compile Include="Web\TmphFormatHtml.cs" />
+    <Compile Include="Web\TmphHtmlNode.cs" />
+    <Compile Include="Web\TmphPoll.cs" />
+    <Compile Include="Win32\TmphKernel32.cs" />
+    <Compile Include="Win32\TmphPsapi.cs" />
+    <Compile Include="Win32\SafeHandles\TmphSafeBuffer.cs" />
+    <Compile Include="Win32\SafeHandles\TmphSafeLocalMemHandle.cs" />
+    <Compile Include="Win32\SafeHandles\TmphSafeMemoryMappedFileHandle.cs" />
+    <Compile Include="Win32\SafeHandles\TmphSafeMemoryMappedViewHandle.cs" />
+    <Compile Include="Win32\SafeHandles\TmphSafeThreadHandle.cs" />
+    <Compile Include="{LaurentLee.Framework.Expand}.LaurentLee.Framework.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Laurent.Lee.CLB\Laurent.Lee.CLB.csproj">
+      <Project>{4a6708d3-4858-4513-b5e1-111a5880cba5}</Project>
+      <Name>Laurent.Lee.CLB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TmphSearchTree.txt" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

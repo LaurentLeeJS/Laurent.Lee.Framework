@@ -1,0 +1,17 @@
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\bin\Debug\Laurent.Lee.Database.dacpac
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\bin\Debug\Laurent.Lee.Database.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\bin\Debug\Laurent.Lee.Database.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\Model.xml
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\refactor.xml
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\postdeploy.sql
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\predeploy.sql
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\Laurent.Lee.Database.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.Database\obj\Debug\Laurent.Lee.Database.pdb
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\bin\Debug\Laurent.Lee.Database.dacpac
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\Laurent.Lee.Database.sqlprojResolveAssemblyReference.cache
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\Model.xml
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\refactor.xml
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\postdeploy.sql
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\predeploy.sql
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\Laurent.Lee.Database.dll
+D:\代碼版本控制\開發框架\Laurent.Lee.Database\obj\Debug\Laurent.Lee.Database.pdb

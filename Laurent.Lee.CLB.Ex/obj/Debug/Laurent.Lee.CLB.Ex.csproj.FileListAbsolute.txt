@@ -1,0 +1,16 @@
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.csprojResolveAssemblyReference.cache
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.Ex.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.Ex.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\bin\Debug\MySql.Data.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.pdb
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.dll
+D:\开发源码\VS2015\Laurent.Lee.Framework\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.pdb
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.Ex.dll
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.Ex.pdb
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.dll
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\bin\Debug\MySql.Data.dll
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\bin\Debug\Laurent.Lee.CLB.pdb
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.csprojResolveAssemblyReference.cache
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.dll
+D:\代碼版本控制\開發框架\Laurent.Lee.CLB.Ex\obj\Debug\Laurent.Lee.CLB.Ex.pdb

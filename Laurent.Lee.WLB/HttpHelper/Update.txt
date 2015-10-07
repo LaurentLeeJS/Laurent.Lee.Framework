@@ -1,0 +1,3 @@
+﻿修复 catch (WebException ex)报错的问题
+增加最后访问的url ResponseUri
+获取重定向的URl  RedirectUrl
